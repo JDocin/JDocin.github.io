@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Spring Cloud 学习笔记]]></title>
+    <url>%2F2019%2F07%2F09%2F%E3%80%90Hexo%E6%90%AD%E5%BB%BAGitPage%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%E3%80%9104-%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[第一篇博文，记录Sprin cloud学习进程。（周更？）]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F06%2F06%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
