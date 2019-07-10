@@ -1642,6 +1642,126 @@ pre .javascript .function {
 .fancybox-close:hover {
   border: none;
 }
+#rewardButton {
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  letter-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+}
+#rewardButton span {
+  display: inline-block;
+  width: 80px;
+  height: 35px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 400;
+  font-style: normal;
+  font-variant: normal;
+  font-stretch: normal;
+  font-size: 18px;
+  font-family: "Microsoft Yahei";
+  background: #f44336;
+}
+#rewardButton span:hover {
+  background: #f7877f;
+}
+#QR {
+  padding-top: 20px;
+}
+#QR a {
+  border: 0;
+}
+#QR img {
+  width: 180px;
+  max-width: 100%;
+  display: inline-block;
+  margin: 0.8em 2em 0 2em;
+}
+#wechat:hover p {
+  animation: roll 0.1s infinite linear;
+  -webkit-animation: roll 0.1s infinite linear;
+  -moz-animation: roll 0.1s infinite linear;
+}
+#alipay:hover p {
+  animation: roll 0.1s infinite linear;
+  -webkit-animation: roll 0.1s infinite linear;
+  -moz-animation: roll 0.1s infinite linear;
+}
+#bitcoin:hover p {
+  animation: roll 0.1s infinite linear;
+  -webkit-animation: roll 0.1s infinite linear;
+  -moz-animation: roll 0.1s infinite linear;
+}
+@-moz-keyframes roll {
+  from {
+    -webkit-transform: rotateZ(30deg);
+    -moz-transform: rotateZ(30deg);
+    -ms-transform: rotateZ(30deg);
+    -o-transform: rotateZ(30deg);
+    transform: rotateZ(30deg);
+  }
+  to {
+    -webkit-transform: rotateZ(-30deg);
+    -moz-transform: rotateZ(-30deg);
+    -ms-transform: rotateZ(-30deg);
+    -o-transform: rotateZ(-30deg);
+    transform: rotateZ(-30deg);
+  }
+}
+@-webkit-keyframes roll {
+  from {
+    -webkit-transform: rotateZ(30deg);
+    -moz-transform: rotateZ(30deg);
+    -ms-transform: rotateZ(30deg);
+    -o-transform: rotateZ(30deg);
+    transform: rotateZ(30deg);
+  }
+  to {
+    -webkit-transform: rotateZ(-30deg);
+    -moz-transform: rotateZ(-30deg);
+    -ms-transform: rotateZ(-30deg);
+    -o-transform: rotateZ(-30deg);
+    transform: rotateZ(-30deg);
+  }
+}
+@-o-keyframes roll {
+  from {
+    -webkit-transform: rotateZ(30deg);
+    -moz-transform: rotateZ(30deg);
+    -ms-transform: rotateZ(30deg);
+    -o-transform: rotateZ(30deg);
+    transform: rotateZ(30deg);
+  }
+  to {
+    -webkit-transform: rotateZ(-30deg);
+    -moz-transform: rotateZ(-30deg);
+    -ms-transform: rotateZ(-30deg);
+    -o-transform: rotateZ(-30deg);
+    transform: rotateZ(-30deg);
+  }
+}
+@keyframes roll {
+  from {
+    -webkit-transform: rotateZ(30deg);
+    -moz-transform: rotateZ(30deg);
+    -ms-transform: rotateZ(30deg);
+    -o-transform: rotateZ(30deg);
+    transform: rotateZ(30deg);
+  }
+  to {
+    -webkit-transform: rotateZ(-30deg);
+    -moz-transform: rotateZ(-30deg);
+    -ms-transform: rotateZ(-30deg);
+    -o-transform: rotateZ(-30deg);
+    transform: rotateZ(-30deg);
+  }
+}
 .rtl.post-body p,
 .rtl.post-body a,
 .rtl.post-body h1,
@@ -1741,7 +1861,31 @@ pre .javascript .function {
   padding: 2px;
   max-width: 120px;
   height: auto;
-  border: 1px solid #eee;
+  border: site-author-image-border-color;
+/* start*/
+  border-radius: 50%;
+/* webkit-transition: 1.4s all;
+  moz-transition: 1.4s all;
+  ms-transition: 1.4s all; */
+  transition: 2.5s all;
+/* end */
+/* display: block;
+  margin: 0 auto;
+  padding: $site-author-image-padding;
+  max-width: $site-author-image-width;
+  height: $site-author-image-height;
+  border: $site-author-image-border-width solid $site-author-image-border-color; */
+}
+.site-author-image:hover {
+/* background-color: rgb(255, 255, 255);
+  webkit-transform: rotate(360deg) scale(1.1);
+  moz-transform: rotate(360deg) scale(1.1);
+  ms-transform: rotate(360deg) scale(1.1); */
+  -webkit-transform: rotate(360deg) scale(1.1);
+  -moz-transform: rotate(360deg) scale(1.1);
+  -ms-transform: rotate(360deg) scale(1.1);
+  -o-transform: rotate(360deg) scale(1.1);
+  transform: rotate(360deg) scale(1.1);
 }
 .site-author-name {
   margin: 0;
@@ -1823,7 +1967,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c33bff;
+  background: #865ec9;
 }
 .links-of-blogroll {
   font-size: 13px;
