@@ -8,17 +8,6 @@
         <category>git</category>
       </categories>
       <tags>
-        <tag>git Sourcetree</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Sourcetree（git GUI）安装]]></title>
-    <url>%2F2019%2F07%2F12%2FSourcetree%EF%BC%88git-GUI%EF%BC%89%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[前言​ 之前项目组要使用git仓库来统一配置文件。因为我太懒了记不住git的命令行指令，所以就安了一个Sourcetree这个图像界面来管理我的git。有很多19年之前的教程里面都是使用了官方专业版本的软件，但是目前专业版本用户必须要注册他的账号，但是因为种种原因页面总是没有响应。所以只能下载企业版。 ​ 我下载的是3.1.3的企业版，亲测可用。 安装步骤​ 首先下载企业版的Sourcetree网址：https://www.sourcetreeapp.com/enterprise ​ 下载后双击打开安装包，点开我的电脑。在访问框内输入一下内容（注意不是右侧的搜索框，是左边的地址访问框，很长条的那个）： ​ %LocalAppData%\Atlassian\SourceTree ​ 新建名为accounts.json的文件。写入如下代码保存后，再次打开下载的安装包就可以正常安装了： 123456789101112131415161718192021222324[ &#123; "$id": "1", "$type": "SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity", "Authenticate": true, "HostInstance": &#123; "$id": "2", "$type": "SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount", "Host": &#123; "$id": "3", "$type": "SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount", "Id": "atlassian account" &#125;, "BaseUrl": "https://id.atlassian.com/" &#125;, "Credentials": &#123; "$id": "4", "$type": "SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account", "Username": "", "Email": null &#125;, "IsDefault": false &#125;]]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
         <tag>git</tag>
         <tag>Sourcetree</tag>
       </tags>
