@@ -88,7 +88,7 @@
 <meta property="og:description" content="在任务分发子模块中，前端开发使用layui框架，layui的table模块允许后端人员简单便捷的构建动态美观的表格。与之前写前端时自己写表格不同，layui的表格需要接收到指定格式的json数据才能进行自动解析。之前因为一直没有注意到所以前端表格一直显示“返回数据格式有错误”的提示。接下来提供解决方法。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/08/26/layui框架1：表格table需要的JSON数据格式构造/1.png">
-<meta property="og:updated_time" content="2019-08-26T08:41:21.638Z">
+<meta property="og:updated_time" content="2019-08-26T08:43:40.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="layui框架1：表格table需要的JSON数据格式构造">
 <meta name="twitter:description" content="在任务分发子模块中，前端开发使用layui框架，layui的table模块允许后端人员简单便捷的构建动态美观的表格。与之前写前端时自己写表格不同，layui的表格需要接收到指定格式的json数据才能进行自动解析。之前因为一直没有注意到所以前端表格一直显示“返回数据格式有错误”的提示。接下来提供解决方法。">
@@ -407,7 +407,7 @@
         <p>在任务分发子模块中，前端开发使用layui框架，layui的table模块允许后端人员简单便捷的构建动态美观的表格。与之前写前端时自己写表格不同，layui的表格需要接收到指定格式的json数据才能进行自动解析。之前因为一直没有注意到所以前端表格一直显示“返回数据格式有错误”的提示。接下来提供解决方法。</p>
 <a id="more"></a>
 
-<p>查找到官网上（<a href="https://www.layui.com/doc/modules/table.html#response" target="_blank" rel="noopener"></a>）明确给出了表格能解析的JOSN格式为：</p>
+<p>查找到官网上（<a href="https://www.layui.com/doc/modules/table.html#response" target="_blank" rel="noopener">layui表格文档</a>）明确给出了表格能解析的JOSN格式为：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"code"</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">"msg"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"count"</span>: <span class="number">1000</span>,</span><br><span class="line">  <span class="attr">"data"</span>: [&#123;&#125;, &#123;&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>而之前我们返回的数据只有data字段后面的列表，所以要在后端对返回值进行特定格式的构造。</p>
