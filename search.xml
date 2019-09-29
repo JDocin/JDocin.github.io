@@ -12,6 +12,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[layui框架3：表格table回传条件变量字段并分页]]></title>
+    <url>%2F2019%2F09%2F29%2Flayui%E6%A1%86%E6%9E%B63%EF%BC%9A%E8%A1%A8%E6%A0%BCtable%E5%9B%9E%E4%BC%A0%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E5%AD%97%E6%AE%B5%E5%B9%B6%E5%88%86%E9%A1%B5%2F</url>
+    <content type="text"><![CDATA[因为前端要实现点击layui终端表格某一行，弹出该行对应终端的子任务表，所以要向后台回传该终端的ID，并且弹回的表格也要实现分页。所以先要在前端实现对应ID变量的回传，再在后端实现带条件的分页数据库查询。 1. layui添加回传变量字段​ 通过where参数来指定回传变量和字段值，如图： ​ 2. layui在有条件字段的情况下分页​ 查询数据库里所有终端ID为termId的行，在mapper里使用where并着limit进行查询。 1234&lt;select id="queryAllDataFromTable" resultMap="BaseResultMap" parameterType="java.lang.Integer"&gt; SELECT * FROM AIT_TASK WHERE TERM_ID = #&#123;termId,jdbcType=INTEGER&#125; limit #&#123;page&#125;,#&#123;limit&#125; &lt;/select&gt; ​ controller里countx的值注意不能再使用前篇的查询所有行的函数，直接使用list.size()来传回总行数。]]></content>
+      <categories>
+        <category>前端</category>
+        <category>layui</category>
+      </categories>
+      <tags>
+        <tag>layui</tag>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MacOS下MySQL可视化工具SequelPro]]></title>
     <url>%2F2019%2F09%2F20%2FMacOS%E4%B8%8BMySQL%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7SequelPro%2F</url>
     <content type="text"><![CDATA[Sequel pro是mac系统一个mysql数据管理的GUI工具，之前在windows使用的是免费低版本的navicat，今天搜了一下没搜到mac版本的，又不想搞一些破解的方法，于是选择了这个。轻量重点是免费。 在用mac安装mysql并且导入数据库的时候出现了一些bug，在此记录一下。 ​ 数据库我是通过homebrew命令行直接安装的，具体的操作可以参考这篇博文使用Homebrew安装mysql，写的很详细。只不过有一点需要注意，通过命令行安装可能在系统设置里找不到mysql数据库配置的GUI，所有配置都只能通过命令行。如果怕麻烦可以通过官网的安装包下载哦。 1. sequel pro无法建立连接​ 连接数据库的时候提示 ​ Authentication plugin ‘caching_sha2_password’ cannot be loaded ​ 原因是mysql8以后的版本对身份认证时进行了加密，所以只要更改一下数据库的认证方式就可以了。 ​ 具体操作如下： 12345678#登陆mysql数据库mysql -u root -p#修改加密规则 ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;password&apos; PASSWORD EXPIRE NEVER;#更新一下用户的密码（可选） ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED WITH mysql_native_password BY &apos;password&apos;; #刷新权限FLUSH PRIVILEGES; 2. 连接后查询数据库和表意外退出 主要原因也是mysql8与他不兼容，要进行sequel版本的切换，换成stest-build的版本网址为：sequel pro test-builds，更新之后可以正常连接。 3. 数据库/表命令行导出导入1）导出1234//将mydb数据库导出到本地的mydb.sql文件中mysqldump -uroot -p123456 --databases mydb &gt; mydb.sql;//将mydb数据库中的tb表导出到本地tb.sql文件中mysqldump -uroot -p123456 mydb1 tb &gt; tb.sql; 2）导入1234567//导入数据库时要先登陆并新建同名数据库create database mydb;//切换到此数据库use mydb;//可以直接将文件拖到source后，会自动补全路径source /user/code/mydb.sql//若数据库已存在，只导入表，登陆后就只执行后两步就可]]></content>
@@ -54,7 +67,8 @@
     <url>%2F2019%2F08%2F11%2FSpring-Cloud%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[记录SpringCloud学习过程中遇到的问题和求解，用书《Spring Cloud微服务实战》。持续更新。 1.同时启动多个相同的springcloud服务(在不同端口开启相同的服务)1.1启动栏点击该服务的Edit Configurations 1.2具体配置 先点击1处图标，复制该服务，复制后出现一个Ddu和Ddu(1)，后者为复制出的新服务 然后在复制者的VM中填入 -Dserver.port=xxxx，即副本服务的端口号（注意与原本端口号应不一致） 最后在Run Dashboard中找到并启动Ddu(1) 1.3查看配置结果启动之后可在E的注册中心看见服务SERVICE-DDU的status栏有两个进程，运行在两个端口]]></content>
       <categories>
-        <category>Java Spring Cloud</category>
+        <category>Java</category>
+        <category>Spring Cloud</category>
       </categories>
       <tags>
         <tag>Java</tag>
