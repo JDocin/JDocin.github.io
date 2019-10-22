@@ -1,342 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>python监控进程内存占用情况</title>
-      <link href="/2019/10/22/python%E7%9B%91%E6%8E%A7%E8%BF%9B%E7%A8%8B%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5/"/>
-      <url>/2019/10/22/python%E7%9B%91%E6%8E%A7%E8%BF%9B%E7%A8%8B%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5/</url>
-      
-        <content type="html"><![CDATA[<p>psutil是python的一个第三方包，可以方便的监控系统，如CPU、内存、网口的使用情况等。而且可以跨系统平台。这里只介绍监控进程内存的简单方法，详细的教程可以看廖大的这篇<a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1183565811281984" target="_blank" rel="noopener">psutil教程</a></p><a id="more"></a><p>如果安装过<strong>anaconda</strong>那么就已经有psutil包了，直接import就行。没有就用<strong>pip install psutil</strong>一下就可。</p><h3 id="查看系统所有进程的内存占用情况"><a href="#查看系统所有进程的内存占用情况" class="headerlink" title="查看系统所有进程的内存占用情况"></a>查看系统所有进程的内存占用情况</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> psutil</span><br><span class="line"><span class="comment"># 查看所有进程</span></span><br><span class="line">pid = psutil.pids()</span><br><span class="line"><span class="keyword">for</span> k, i <span class="keyword">in</span> enumerate(pid):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        proc = psutil.Process(i)</span><br><span class="line">        print(k, i, <span class="string">"%.2f%%"</span> % (proc.memory_percent()), <span class="string">"%"</span>, proc.name(), proc.exe())</span><br><span class="line">    <span class="keyword">except</span> psutil.AccessDenied:</span><br><span class="line">        print(<span class="string">"无"</span>)</span><br></pre></td></tr></table></figure><h3 id="查看指定进程"><a href="#查看指定进程" class="headerlink" title="查看指定进程"></a>查看指定进程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ProcessID = <span class="number">1</span>***<span class="number">0</span>  <span class="comment">#已知某进程号</span></span><br><span class="line">proc = psutil.Process(int(ProcessID))</span><br><span class="line">print(ProcessID, <span class="string">"% .2f%%"</span> % (proc.memory_percent()),<span class="string">"% .2f%%"</span> % (proc.cpu_percent()), proc.name(), proc.exe())</span><br></pre></td></tr></table></figure><p>运行结果如下：</p><p>​        <strong><img src="/2019/10/22/python监控进程内存占用情况/1.png"></strong></p>]]></content>
-      
-      
+<search>
+  <entry>
+    <title><![CDATA[python监控进程内存占用情况]]></title>
+    <url>%2F2019%2F10%2F22%2Fpython%E7%9B%91%E6%8E%A7%E8%BF%9B%E7%A8%8B%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5%2F</url>
+    <content type="text"><![CDATA[psutil是python的一个第三方包，可以方便的监控系统，如CPU、内存、网口的使用情况等。而且可以跨系统平台。这里只介绍监控进程内存的简单方法，详细的教程可以看廖大的这篇psutil教程 如果安装过anaconda那么就已经有psutil包了，直接import就行。没有就用pip install psutil一下就可。 查看系统所有进程的内存占用情况123456789import psutil# 查看所有进程pid = psutil.pids()for k, i in enumerate(pid): try: proc = psutil.Process(i) print(k, i, "%.2f%%" % (proc.memory_percent()), "%", proc.name(), proc.exe()) except psutil.AccessDenied: print("无") 查看指定进程123ProcessID = 1***0 #已知某进程号proc = psutil.Process(int(ProcessID))print(ProcessID, "% .2f%%" % (proc.memory_percent()),"% .2f%%" % (proc.cpu_percent()), proc.name(), proc.exe()) 运行结果如下： ​]]></content>
       <categories>
-          
-          <category> python </category>
-          
+        <category>python</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Java List类操作</title>
-      <link href="/2019/09/29/Java-List%E7%B1%BB%E6%93%8D%E4%BD%9C/"/>
-      <url>/2019/09/29/Java-List%E7%B1%BB%E6%93%8D%E4%BD%9C/</url>
-      
-        <content type="html"><![CDATA[<p>最近项目涉及到一些Java list的操作，记录一下，不定时更新。</p><a id="more"></a><h3 id="1-新建List实例"><a href="#1-新建List实例" class="headerlink" title="1. 新建List实例"></a>1. 新建List实例</h3><p>​    <strong>List<model> mecl = new ArrayList&lt;&gt;() ;</model></strong></p><p>​    Java没有List实例，只能用ArrayList来实例化。创建list实例后还要依次新建model实例并插入到list中,使用add操作即可。</p><p>​    mecl.add( new mode() );        </p><h3 id="2-实现实体类的List按某一字段值排序"><a href="#2-实现实体类的List按某一字段值排序" class="headerlink" title="2. 实现实体类的List按某一字段值排序"></a>2. 实现实体类的List按某一字段值排序</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 得到原始list</span></span><br><span class="line">List&lt;model&gt; list = someService.getAll(); </span><br><span class="line"><span class="comment">// 按字段id默认升序排列</span></span><br><span class="line">List&lt;model&gt; listO = list.stream().sorted(Comparator.comparing(model::getID)).collect(Collectors.toList());</span><br><span class="line"><span class="comment">// 反转最后的list</span></span><br><span class="line">Collections.reverse(listO);</span><br></pre></td></tr></table></figure><h3 id="3-List根据条件循环实现删除多项"><a href="#3-List根据条件循环实现删除多项" class="headerlink" title="3. List根据条件循环实现删除多项"></a>3. List根据条件循环实现删除多项</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List <span class="title">iteratorRemove</span><span class="params">(List list, Integer elemennt)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 若是非实体类的list则不写model</span></span><br><span class="line">        Iterator&lt;model&gt; iterator = list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">          <span class="comment">// cur是要获取的下一个实体类项</span></span><br><span class="line">            model cur = iterator.next();</span><br><span class="line">          <span class="comment">// elemennt是要比较的字段值</span></span><br><span class="line">            <span class="keyword">if</span> (cur.getOffMecId().equals(elemennt)) &#123;</span><br><span class="line">                iterator.remove();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java List类操作]]></title>
+    <url>%2F2019%2F09%2F29%2FJava-List%E7%B1%BB%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[最近项目涉及到一些Java list的操作，记录一下，不定时更新。 1. 新建List实例​ List mecl = new ArrayList&lt;&gt;() ; ​ Java没有List实例，只能用ArrayList来实例化。创建list实例后还要依次新建model实例并插入到list中,使用add操作即可。 ​ mecl.add( new mode() ); 2. 实现实体类的List按某一字段值排序123456// 得到原始listList&lt;model&gt; list = someService.getAll(); // 按字段id默认升序排列List&lt;model&gt; listO = list.stream().sorted(Comparator.comparing(model::getID)).collect(Collectors.toList());// 反转最后的listCollections.reverse(listO); 3. List根据条件循环实现删除多项12345678910111213public static List iteratorRemove(List list, Integer elemennt) &#123; // 若是非实体类的list则不写model Iterator&lt;model&gt; iterator = list.iterator(); while (iterator.hasNext()) &#123; // cur是要获取的下一个实体类项 model cur = iterator.next(); // elemennt是要比较的字段值 if (cur.getOffMecId().equals(elemennt)) &#123; iterator.remove(); &#125; &#125; return list; &#125;]]></content>
       <categories>
-          
-          <category> Java </category>
-          
+        <category>Java</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>layui框架3：表格table回传条件变量字段并分页</title>
-      <link href="/2019/09/29/layui%E6%A1%86%E6%9E%B63%EF%BC%9A%E8%A1%A8%E6%A0%BCtable%E5%9B%9E%E4%BC%A0%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E5%AD%97%E6%AE%B5%E5%B9%B6%E5%88%86%E9%A1%B5/"/>
-      <url>/2019/09/29/layui%E6%A1%86%E6%9E%B63%EF%BC%9A%E8%A1%A8%E6%A0%BCtable%E5%9B%9E%E4%BC%A0%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E5%AD%97%E6%AE%B5%E5%B9%B6%E5%88%86%E9%A1%B5/</url>
-      
-        <content type="html"><![CDATA[<p>因为前端要实现<strong>点击layui终端表格某一行，弹出该行对应终端的子任务表</strong>，所以要向后台回传该终端的ID，并且弹回的表格也要实现分页。所以先要在前端实现对应ID变量的回传，再在后端实现带条件的分页数据库查询。</p><a id="more"></a><h3 id="1-layui添加回传变量字段"><a href="#1-layui添加回传变量字段" class="headerlink" title="1. layui添加回传变量字段"></a>1. layui添加回传变量字段</h3><p>​    通过where参数来指定回传变量和字段值，如图：</p><p>​    <img src="/2019/09/29/layui框架3：表格table回传条件变量字段并分页/1-1.png"></p><h3 id="2-layui在有条件字段的情况下分页"><a href="#2-layui在有条件字段的情况下分页" class="headerlink" title="2. layui在有条件字段的情况下分页"></a>2. layui在有条件字段的情况下分页</h3><p>​    查询数据库里所有终端ID为termId的行，在mapper里使用where并着limit进行查询。</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryAllDataFromTable"</span> <span class="attr">resultMap</span>=<span class="string">"BaseResultMap"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.Integer"</span>&gt;</span></span><br><span class="line">SELECT * FROM AIT_TASK</span><br><span class="line">    WHERE TERM_ID = #&#123;termId,jdbcType=INTEGER&#125;  limit #&#123;page&#125;,#&#123;limit&#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure><p>​    controller里countx的值注意不能再使用前篇的查询所有行的函数，直接使用list.size()来传回总行数。</p>]]></content>
-      
-      
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[layui框架3：表格table回传条件变量字段并分页]]></title>
+    <url>%2F2019%2F09%2F29%2Flayui%E6%A1%86%E6%9E%B63%EF%BC%9A%E8%A1%A8%E6%A0%BCtable%E5%9B%9E%E4%BC%A0%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E5%AD%97%E6%AE%B5%E5%B9%B6%E5%88%86%E9%A1%B5%2F</url>
+    <content type="text"><![CDATA[因为前端要实现点击layui终端表格某一行，弹出该行对应终端的子任务表，所以要向后台回传该终端的ID，并且弹回的表格也要实现分页。所以先要在前端实现对应ID变量的回传，再在后端实现带条件的分页数据库查询。 1. layui添加回传变量字段​ 通过where参数来指定回传变量和字段值，如图： ​ 2. layui在有条件字段的情况下分页​ 查询数据库里所有终端ID为termId的行，在mapper里使用where并着limit进行查询。 1234&lt;select id="queryAllDataFromTable" resultMap="BaseResultMap" parameterType="java.lang.Integer"&gt; SELECT * FROM AIT_TASK WHERE TERM_ID = #&#123;termId,jdbcType=INTEGER&#125; limit #&#123;page&#125;,#&#123;limit&#125; &lt;/select&gt; ​ controller里countx的值注意不能再使用前篇的查询所有行的函数，直接使用list.size()来传回总行数。]]></content>
       <categories>
-          
-          <category> 前端 </category>
-          
-          <category> layui </category>
-          
+        <category>前端</category>
+        <category>layui</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> layui </tag>
-            
-            <tag> 前端 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>MacOS下MySQL可视化工具SequelPro</title>
-      <link href="/2019/09/20/MacOS%E4%B8%8BMySQL%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7SequelPro/"/>
-      <url>/2019/09/20/MacOS%E4%B8%8BMySQL%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7SequelPro/</url>
-      
-        <content type="html"><![CDATA[<p>Sequel pro是mac系统一个mysql数据管理的GUI工具，之前在windows使用的是免费低版本的navicat，今天搜了一下没搜到mac版本的，又不想搞一些破解的方法，于是选择了这个。轻量重点是免费。</p><p>在用mac安装mysql并且导入数据库的时候出现了一些bug，在此记录一下。</p><a id="more"></a><p>​    数据库我是通过homebrew命令行直接安装的，具体的操作可以参考这篇博文<a href="https://www.jianshu.com/p/d3f7e7402449" target="_blank" rel="noopener">使用Homebrew安装mysql</a>，写的很详细。只不过有一点需要注意，通过命令行安装可能在系统设置里找不到mysql数据库配置的GUI，所有配置都只能通过命令行。如果怕麻烦可以通过官网的安装包下载哦。</p><h3 id="1-sequel-pro无法建立连接"><a href="#1-sequel-pro无法建立连接" class="headerlink" title="1. sequel pro无法建立连接"></a>1. sequel pro无法建立连接</h3><p>​    连接数据库的时候提示</p><p>​    <strong>Authentication plugin ‘caching_sha2_password’ cannot be loaded</strong></p><img src="/2019/09/20/MacOS下MySQL可视化工具SequelPro/1.jpg"><p>​      原因是mysql8以后的版本对身份认证时进行了加密，所以只要更改一下数据库的认证方式就可以了。</p><p>​    具体操作如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#登陆mysql数据库</span><br><span class="line">mysql -u root -p</span><br><span class="line">#修改加密规则 </span><br><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;password&apos; PASSWORD EXPIRE NEVER;</span><br><span class="line">#更新一下用户的密码（可选）   </span><br><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED WITH mysql_native_password BY &apos;password&apos;;   </span><br><span class="line">#刷新权限</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure><h3 id="2-连接后查询数据库和表意外退出"><a href="#2-连接后查询数据库和表意外退出" class="headerlink" title="2. 连接后查询数据库和表意外退出"></a>2. 连接后查询数据库和表意外退出</h3><img src="/2019/09/20/MacOS下MySQL可视化工具SequelPro/2.jpg"><p>主要原因也是mysql8与他不兼容，要进行sequel版本的切换，换成stest-build的版本网址为：<a href="https://sequelpro.com/test-builds" target="_blank" rel="noopener">sequel pro test-builds</a>，更新之后可以正常连接。</p><h3 id="3-数据库-表命令行导出导入"><a href="#3-数据库-表命令行导出导入" class="headerlink" title="3. 数据库/表命令行导出导入"></a>3. 数据库/表命令行导出导入</h3><h4 id="1）导出"><a href="#1）导出" class="headerlink" title="1）导出"></a>1）导出</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//将mydb数据库导出到本地的mydb.sql文件中</span><br><span class="line">mysqldump -uroot -p123456 --databases mydb &gt; mydb.sql;</span><br><span class="line">//将mydb数据库中的tb表导出到本地tb.sql文件中</span><br><span class="line">mysqldump  -uroot -p123456 mydb1 tb &gt; tb.sql;</span><br></pre></td></tr></table></figure><h4 id="2）导入"><a href="#2）导入" class="headerlink" title="2）导入"></a>2）导入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//导入数据库时要先登陆并新建同名数据库</span><br><span class="line">create database mydb;</span><br><span class="line">//切换到此数据库</span><br><span class="line">use mydb;</span><br><span class="line">//可以直接将文件拖到source后，会自动补全路径</span><br><span class="line">source /user/code/mydb.sql</span><br><span class="line">//若数据库已存在，只导入表，登陆后就只执行后两步就可</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
+      <tags>
+        <tag>layui</tag>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MacOS下MySQL可视化工具SequelPro]]></title>
+    <url>%2F2019%2F09%2F20%2FMacOS%E4%B8%8BMySQL%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7SequelPro%2F</url>
+    <content type="text"><![CDATA[Sequel pro是mac系统一个mysql数据管理的GUI工具，之前在windows使用的是免费低版本的navicat，今天搜了一下没搜到mac版本的，又不想搞一些破解的方法，于是选择了这个。轻量重点是免费。 在用mac安装mysql并且导入数据库的时候出现了一些bug，在此记录一下。 ​ 数据库我是通过homebrew命令行直接安装的，具体的操作可以参考这篇博文使用Homebrew安装mysql，写的很详细。只不过有一点需要注意，通过命令行安装可能在系统设置里找不到mysql数据库配置的GUI，所有配置都只能通过命令行。如果怕麻烦可以通过官网的安装包下载哦。 1. sequel pro无法建立连接​ 连接数据库的时候提示 ​ Authentication plugin ‘caching_sha2_password’ cannot be loaded ​ 原因是mysql8以后的版本对身份认证时进行了加密，所以只要更改一下数据库的认证方式就可以了。 ​ 具体操作如下： 12345678#登陆mysql数据库mysql -u root -p#修改加密规则 ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;password&apos; PASSWORD EXPIRE NEVER;#更新一下用户的密码（可选） ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED WITH mysql_native_password BY &apos;password&apos;; #刷新权限FLUSH PRIVILEGES; 2. 连接后查询数据库和表意外退出 主要原因也是mysql8与他不兼容，要进行sequel版本的切换，换成stest-build的版本网址为：sequel pro test-builds，更新之后可以正常连接。 3. 数据库/表命令行导出导入1）导出1234//将mydb数据库导出到本地的mydb.sql文件中mysqldump -uroot -p123456 --databases mydb &gt; mydb.sql;//将mydb数据库中的tb表导出到本地tb.sql文件中mysqldump -uroot -p123456 mydb1 tb &gt; tb.sql; 2）导入1234567//导入数据库时要先登陆并新建同名数据库create database mydb;//切换到此数据库use mydb;//可以直接将文件拖到source后，会自动补全路径source /user/code/mydb.sql//若数据库已存在，只导入表，登陆后就只执行后两步就可]]></content>
       <categories>
-          
-          <category> MySQL </category>
-          
+        <category>MySQL</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> MacOS </tag>
-            
-            <tag> MySQL </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>layui框架2：表格table实现真分页</title>
-      <link href="/2019/08/26/layui%E6%A1%86%E6%9E%B62%EF%BC%9A%E8%A1%A8%E6%A0%BCtable%E5%AE%9E%E7%8E%B0%E7%9C%9F%E5%88%86%E9%A1%B5/"/>
-      <url>/2019/08/26/layui%E6%A1%86%E6%9E%B62%EF%BC%9A%E8%A1%A8%E6%A0%BCtable%E5%AE%9E%E7%8E%B0%E7%9C%9F%E5%88%86%E9%A1%B5/</url>
-      
-        <content type="html"><![CDATA[<p>当数据量很大时，数据表格分页就显得十分必要，而若是将表格分页放在前端实现则要求浏览器缓存全部数据，当数据达到万级时加载会变得十分缓慢也是不现实的。所以分页应该在后端实现，即真分页。思路很简单，就是每次传入要跳入的页标curr和每页显示的数据条数限制limit。接下来具体实现一下。</p><a id="more"></a><h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><p>在html里绑定好表格后，通过page为true字段开启分页功能，并且可以设置一些参数样式，详见文档。<a href="https://www.layui.com/demo/table/resetPage.html" target="_blank" rel="noopener">自定义分页</a></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">layui.use([<span class="string">'table'</span>, <span class="string">'form'</span>, <span class="string">'layer'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </span><br><span class="line">    <span class="keyword">var</span> table = layui.table;    </span><br><span class="line">    table.render(&#123;        </span><br><span class="line">    elem: <span class="string">'#placeTable'</span>        </span><br><span class="line">    ,<span class="attr">url</span>:<span class="string">'http://localhost:8779/edge/fp'</span>        </span><br><span class="line">    ,<span class="attr">toolbar</span>: <span class="string">'#topBarTool'</span>    <span class="comment">//顶部工具栏     </span></span><br><span class="line">        ,<span class="attr">title</span>: <span class="string">'用户数据表'</span>        </span><br><span class="line">        ,<span class="attr">cols</span>: [[            </span><br><span class="line">            &#123;<span class="attr">field</span>:<span class="string">'id'</span>, <span class="attr">width</span>:<span class="number">90</span>, <span class="attr">title</span>: <span class="string">'ID'</span>, <span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">sort</span>: <span class="literal">true</span>&#125;            </span><br><span class="line">            ,&#123;<span class="attr">field</span>:<span class="string">'jing'</span>, <span class="attr">width</span>:<span class="number">130</span>, <span class="attr">title</span>: <span class="string">'经度'</span>,<span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">edit</span>: <span class="string">'text'</span>&#125;            </span><br><span class="line">            ,&#123;<span class="attr">field</span>:<span class="string">'wei'</span>, <span class="attr">width</span>:<span class="number">130</span>, <span class="attr">title</span>: <span class="string">'纬度'</span>,<span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">edit</span>: <span class="string">'text'</span>&#125;            </span><br><span class="line">            ,&#123;<span class="attr">field</span>:<span class="string">'time'</span>, <span class="attr">width</span>:<span class="number">100</span>, <span class="attr">title</span>: <span class="string">'时间'</span>,<span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">sort</span>: <span class="literal">true</span>,<span class="attr">edit</span>: <span class="string">'text'</span>&#125;         </span><br><span class="line">            ,&#123;<span class="attr">field</span>:<span class="string">'earn'</span>,<span class="attr">width</span>:<span class="number">100</span>, <span class="attr">title</span>: <span class="string">'收益'</span>, <span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">sort</span>: <span class="literal">true</span>,<span class="attr">edit</span>: <span class="string">'text'</span>&#125;         </span><br><span class="line">            ,&#123;<span class="attr">field</span>:<span class="string">'pri'</span>, <span class="attr">width</span>:<span class="number">100</span>, <span class="attr">title</span>: <span class="string">'优先级'</span>, <span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">sort</span>: <span class="literal">true</span>,<span class="attr">templet</span>: <span class="string">'#sexTpl'</span>&#125;            , &#123;<span class="attr">minWidth</span>:<span class="number">70</span>, <span class="attr">align</span>:<span class="string">'center'</span>, <span class="attr">toolbar</span>: <span class="string">'#barDemo'</span>&#125;   ]]        </span><br><span class="line">        ,<span class="attr">page</span>: <span class="literal">true</span> <span class="comment">//开启分页        </span></span><br><span class="line">        ,<span class="attr">limit</span>: <span class="number">5</span>        </span><br><span class="line">        ,<span class="attr">done</span>:<span class="function"><span class="keyword">function</span>(<span class="params">res, curr, count</span>)</span>&#123;        &#125;  <span class="comment">//数据回调方法        </span></span><br><span class="line">        ,<span class="attr">page</span>: &#123; <span class="comment">//支持传入 laypage 组件的所有参数 - 详见文档            </span></span><br><span class="line">            layout: [<span class="string">'limit'</span>,<span class="string">'count'</span>,  <span class="string">'prev'</span>, <span class="string">'page'</span>, <span class="string">'next'</span>, <span class="string">'skip'</span>] <span class="comment">//自定义分页布局            </span></span><br><span class="line">            ,<span class="attr">groups</span>: <span class="number">1</span> <span class="comment">//只显示 1 个连续页码            </span></span><br><span class="line">            ,<span class="attr">first</span>: <span class="literal">false</span> <span class="comment">//不显示首页            </span></span><br><span class="line">            ,<span class="attr">last</span>: <span class="literal">false</span> <span class="comment">//不显示尾页       </span></span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>通过浏览器的调试功能（windows下F12开启），查看Network，发现前端表格每次请求都会向后端发送类似这样的：<strong>…/edge/fp?page=1&amp;limit=5</strong>，意思为第一页表格且显示5条数据。所以在后台用字段接收page和limit然后对数据库进行读取。后端的代码如下。首先是controller：</p><h2 id="Controller类："><a href="#Controller类：" class="headerlink" title="Controller类："></a>Controller类：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">@RequestMapping</span>(value = <span class="string">"fp"</span>)</span><br><span class="line">  <span class="meta">@ResponseBody</span></span><br><span class="line">  <span class="meta">@CrossOrigin</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">findplace</span><span class="params">( @RequestParam(required=<span class="keyword">false</span>,defaultValue=<span class="string">"1"</span>)</span> <span class="keyword">int</span> page,</span></span><br><span class="line"><span class="function">                           @<span class="title">RequestParam</span><span class="params">(required=<span class="keyword">false</span>,defaultValue=<span class="string">"15"</span>)</span> <span class="keyword">int</span> limit</span></span><br><span class="line"><span class="function">                           )</span>&#123;</span><br><span class="line">      <span class="comment">// 获取了page和limit添加分页功能</span></span><br><span class="line">      List&lt;Place&gt; datas = placeservice.queryAllDataFromTable(page,limit);</span><br><span class="line">      <span class="keyword">int</span> countx = placeservice.queryAllCount();</span><br><span class="line"><span class="comment">//构造特定数据格式</span></span><br><span class="line">      JSONObject jo = <span class="keyword">new</span> JSONObject();</span><br><span class="line">      jo.put(<span class="string">"code"</span>,<span class="number">0</span>);</span><br><span class="line">      jo.put(<span class="string">"msg"</span>,<span class="string">""</span>);</span><br><span class="line">      jo.put(<span class="string">"count"</span>,countx);</span><br><span class="line">      jo.put(<span class="string">"data"</span>, datas);</span><br><span class="line">      <span class="keyword">return</span> jo.toString();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><h2 id="Service-amp-Impl类："><a href="#Service-amp-Impl类：" class="headerlink" title="Service&amp;Impl类："></a>Service&amp;Impl类：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">List&lt;Place&gt; <span class="title">queryAllDataFromTable</span><span class="params">(<span class="keyword">int</span> page, <span class="keyword">int</span> limit)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">queryAllCount</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Place&gt; <span class="title">queryAllDataFromTable</span><span class="params">(<span class="keyword">int</span> page, <span class="keyword">int</span> limit)</span> </span>&#123;</span><br><span class="line">        page=(page-<span class="number">1</span>)*limit; </span><br><span class="line">        <span class="keyword">return</span> placemapper.queryAllDataFromTable(page,limit);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">queryAllCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> placemapper.queryAllCount();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><h2 id="Mapper类："><a href="#Mapper类：" class="headerlink" title="Mapper类："></a>Mapper类：</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--查找当前页的数据--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryAllDataFromTable"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.Integer"</span> <span class="attr">resultMap</span>=<span class="string">"FPos"</span>&gt;</span>    </span><br><span class="line">    select * from allplace    </span><br><span class="line">    limit #&#123;page&#125;,#&#123;limit&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--查询总数据条数--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryAllCount"</span> <span class="attr">resultType</span>=<span class="string">"java.lang.Integer"</span>&gt;</span>    </span><br><span class="line">    select count(*) from allplace</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-      
-      
+      <tags>
+        <tag>MacOS</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[layui框架2：表格table实现真分页]]></title>
+    <url>%2F2019%2F08%2F26%2Flayui%E6%A1%86%E6%9E%B62%EF%BC%9A%E8%A1%A8%E6%A0%BCtable%E5%AE%9E%E7%8E%B0%E7%9C%9F%E5%88%86%E9%A1%B5%2F</url>
+    <content type="text"><![CDATA[当数据量很大时，数据表格分页就显得十分必要，而若是将表格分页放在前端实现则要求浏览器缓存全部数据，当数据达到万级时加载会变得十分缓慢也是不现实的。所以分页应该在后端实现，即真分页。思路很简单，就是每次传入要跳入的页标curr和每页显示的数据条数限制limit。接下来具体实现一下。 JavaScript在html里绑定好表格后，通过page为true字段开启分页功能，并且可以设置一些参数样式，详见文档。自定义分页 12345678910111213141516171819202122232425layui.use(['table', 'form', 'layer'], function()&#123; var table = layui.table; table.render(&#123; elem: '#placeTable' ,url:'http://localhost:8779/edge/fp' ,toolbar: '#topBarTool' //顶部工具栏 ,title: '用户数据表' ,cols: [[ &#123;field:'id', width:90, title: 'ID', align: "center",sort: true&#125; ,&#123;field:'jing', width:130, title: '经度',align: "center",edit: 'text'&#125; ,&#123;field:'wei', width:130, title: '纬度',align: "center",edit: 'text'&#125; ,&#123;field:'time', width:100, title: '时间',align: "center",sort: true,edit: 'text'&#125; ,&#123;field:'earn',width:100, title: '收益', align: "center",sort: true,edit: 'text'&#125; ,&#123;field:'pri', width:100, title: '优先级', align: "center",sort: true,templet: '#sexTpl'&#125; , &#123;minWidth:70, align:'center', toolbar: '#barDemo'&#125; ]] ,page: true //开启分页 ,limit: 5 ,done:function(res, curr, count)&#123; &#125; //数据回调方法 ,page: &#123; //支持传入 laypage 组件的所有参数 - 详见文档 layout: ['limit','count', 'prev', 'page', 'next', 'skip'] //自定义分页布局 ,groups: 1 //只显示 1 个连续页码 ,first: false //不显示首页 ,last: false //不显示尾页 &#125; &#125;);&#125;); 通过浏览器的调试功能（windows下F12开启），查看Network，发现前端表格每次请求都会向后端发送类似这样的：…/edge/fp?page=1&amp;limit=5，意思为第一页表格且显示5条数据。所以在后台用字段接收page和limit然后对数据库进行读取。后端的代码如下。首先是controller： Controller类：1234567891011121314151617 @RequestMapping(value = "fp") @ResponseBody @CrossOrigin public String findplace( @RequestParam(required=false,defaultValue="1") int page, @RequestParam(required=false,defaultValue="15") int limit )&#123; // 获取了page和limit添加分页功能 List&lt;Place&gt; datas = placeservice.queryAllDataFromTable(page,limit); int countx = placeservice.queryAllCount();//构造特定数据格式 JSONObject jo = new JSONObject(); jo.put("code",0); jo.put("msg",""); jo.put("count",countx); jo.put("data", datas); return jo.toString(); &#125; Service&amp;Impl类：12List&lt;Place&gt; queryAllDataFromTable(int page, int limit);int queryAllCount(); 123456789@Overridepublic List&lt;Place&gt; queryAllDataFromTable(int page, int limit) &#123; page=(page-1)*limit; return placemapper.queryAllDataFromTable(page,limit); &#125; @Override public int queryAllCount() &#123; return placemapper.queryAllCount(); &#125; Mapper类：123456789&lt;!--查找当前页的数据--&gt;&lt;select id="queryAllDataFromTable" parameterType="java.lang.Integer" resultMap="FPos"&gt; select * from allplace limit #&#123;page&#125;,#&#123;limit&#125;&lt;/select&gt;&lt;!--查询总数据条数--&gt;&lt;select id="queryAllCount" resultType="java.lang.Integer"&gt; select count(*) from allplace&lt;/select&gt;]]></content>
       <categories>
-          
-          <category> 前端 </category>
-          
-          <category> layui </category>
-          
+        <category>前端</category>
+        <category>layui</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> layui </tag>
-            
-            <tag> 前端 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>layui框架1：表格table需要的JSON数据格式构造</title>
-      <link href="/2019/08/26/layui%E6%A1%86%E6%9E%B61%EF%BC%9A%E8%A1%A8%E6%A0%BCtable%E9%9C%80%E8%A6%81%E7%9A%84JSON%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E6%9E%84%E9%80%A0/"/>
-      <url>/2019/08/26/layui%E6%A1%86%E6%9E%B61%EF%BC%9A%E8%A1%A8%E6%A0%BCtable%E9%9C%80%E8%A6%81%E7%9A%84JSON%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E6%9E%84%E9%80%A0/</url>
-      
-        <content type="html"><![CDATA[<p>在任务分发子模块中，前端开发使用layui框架，layui的table模块允许后端人员简单便捷的构建动态美观的表格。与之前写前端时自己写表格不同，layui的表格需要接收到指定格式的json数据才能进行自动解析。之前因为一直没有注意到所以前端表格一直显示“返回数据格式有错误”的提示。接下来提供解决方法。</p><a id="more"></a><p>查找到官网上（<a href="https://www.layui.com/doc/modules/table.html#response" target="_blank" rel="noopener">layui表格文档</a>）明确给出了表格能解析的JOSN格式为：</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"code"</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">"msg"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"count"</span>: <span class="number">1000</span>,</span><br><span class="line">  <span class="attr">"data"</span>: [&#123;&#125;, &#123;&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>而之前我们返回的数据只有data字段后面的列表，所以要在后端对返回值进行特定格式的构造。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">findplace</span><span class="params">( @RequestParam(required=<span class="keyword">false</span>,defaultValue=<span class="string">"1"</span>)</span> <span class="keyword">int</span> page,</span></span><br><span class="line"><span class="function">                        @<span class="title">RequestParam</span><span class="params">(required=<span class="keyword">false</span>,defaultValue=<span class="string">"15"</span>)</span> <span class="keyword">int</span> limit</span></span><br><span class="line"><span class="function">                           )</span>&#123;</span><br><span class="line">        List&lt;Place&gt; datas=placeservice.queryAllDataFromTable(page,limit);</span><br><span class="line">        <span class="keyword">int</span> countx=  placeservice.queryAllCount();</span><br><span class="line">        <span class="comment">// 构造json</span></span><br><span class="line">        JSONObject jo = <span class="keyword">new</span> JSONObject();</span><br><span class="line">        jo.put(<span class="string">"code"</span>,<span class="number">0</span>);</span><br><span class="line">        jo.put(<span class="string">"msg"</span>,<span class="string">""</span>);</span><br><span class="line">        jo.put(<span class="string">"count"</span>,countx);</span><br><span class="line">        jo.put(<span class="string">"data"</span>, datas);</span><br><span class="line">        <span class="keyword">return</span> jo.toString();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>首先返回值改为String（因为要返回json格式），datas是从数据库中读取的所有任务的Place类的列表，最后通过JSONObject构造json格式的数据。并返回给前端表格进行解析。最后前端代码：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">layui.use([<span class="string">'table'</span>, <span class="string">'form'</span>, <span class="string">'layer'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </span><br><span class="line">    <span class="keyword">var</span> table = layui.table;    </span><br><span class="line">    table.render(&#123;        </span><br><span class="line">    elem: <span class="string">'#placeTable'</span>        </span><br><span class="line">    ,<span class="attr">url</span>:<span class="string">'http://localhost:8779/edge/fp'</span>        </span><br><span class="line">    ,<span class="attr">toolbar</span>: <span class="string">'#topBarTool'</span>    <span class="comment">//顶部工具栏     </span></span><br><span class="line">        ,<span class="attr">title</span>: <span class="string">'用户数据表'</span>        </span><br><span class="line">        ,<span class="attr">cols</span>: [[            </span><br><span class="line">            &#123;<span class="attr">field</span>:<span class="string">'id'</span>, <span class="attr">width</span>:<span class="number">90</span>, <span class="attr">title</span>: <span class="string">'ID'</span>, <span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">sort</span>: <span class="literal">true</span>&#125;            </span><br><span class="line">            ,&#123;<span class="attr">field</span>:<span class="string">'jing'</span>, <span class="attr">width</span>:<span class="number">130</span>, <span class="attr">title</span>: <span class="string">'经度'</span>,<span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">edit</span>: <span class="string">'text'</span>&#125;            </span><br><span class="line">            ,&#123;<span class="attr">field</span>:<span class="string">'wei'</span>, <span class="attr">width</span>:<span class="number">130</span>, <span class="attr">title</span>: <span class="string">'纬度'</span>,<span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">edit</span>: <span class="string">'text'</span>&#125;            </span><br><span class="line">            ,&#123;<span class="attr">field</span>:<span class="string">'time'</span>, <span class="attr">width</span>:<span class="number">100</span>, <span class="attr">title</span>: <span class="string">'时间'</span>,<span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">sort</span>: <span class="literal">true</span>,<span class="attr">edit</span>: <span class="string">'text'</span>&#125;         </span><br><span class="line">            ,&#123;<span class="attr">field</span>:<span class="string">'earn'</span>,<span class="attr">width</span>:<span class="number">100</span>, <span class="attr">title</span>: <span class="string">'收益'</span>, <span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">sort</span>: <span class="literal">true</span>,<span class="attr">edit</span>: <span class="string">'text'</span>&#125;         </span><br><span class="line">            ,&#123;<span class="attr">field</span>:<span class="string">'pri'</span>, <span class="attr">width</span>:<span class="number">100</span>, <span class="attr">title</span>: <span class="string">'优先级'</span>, <span class="attr">align</span>: <span class="string">"center"</span>,<span class="attr">sort</span>: <span class="literal">true</span>,<span class="attr">templet</span>: <span class="string">'#sexTpl'</span>&#125;            , &#123;<span class="attr">minWidth</span>:<span class="number">70</span>, <span class="attr">align</span>:<span class="string">'center'</span>, <span class="attr">toolbar</span>: <span class="string">'#barDemo'</span>&#125;   ]]        </span><br><span class="line">        ,<span class="attr">page</span>: <span class="literal">true</span> <span class="comment">//开启分页        </span></span><br><span class="line">        ,<span class="attr">limit</span>: <span class="number">5</span>        </span><br><span class="line">        ,<span class="attr">done</span>:<span class="function"><span class="keyword">function</span>(<span class="params">res, curr, count</span>)</span>&#123;        &#125;  <span class="comment">//数据回调方法        </span></span><br><span class="line">        ,<span class="attr">page</span>: &#123; <span class="comment">//支持传入 laypage 组件的所有参数 - 详见文档            </span></span><br><span class="line">            layout: [<span class="string">'limit'</span>,<span class="string">'count'</span>,  <span class="string">'prev'</span>, <span class="string">'page'</span>, <span class="string">'next'</span>, <span class="string">'skip'</span>] <span class="comment">//自定义分页布局            </span></span><br><span class="line">            ,<span class="attr">groups</span>: <span class="number">1</span> <span class="comment">//只显示 1 个连续页码            </span></span><br><span class="line">            ,<span class="attr">first</span>: <span class="literal">false</span> <span class="comment">//不显示首页            </span></span><br><span class="line">            ,<span class="attr">last</span>: <span class="literal">false</span> <span class="comment">//不显示尾页       </span></span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>通过cols参数中的field直接绑定data字段值（place类list）中的属性构造表格。</p><img src="/2019/08/26/layui框架1：表格table需要的JSON数据格式构造/1.png">]]></content>
-      
-      
+      <tags>
+        <tag>layui</tag>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[layui框架1：表格table需要的JSON数据格式构造]]></title>
+    <url>%2F2019%2F08%2F26%2Flayui%E6%A1%86%E6%9E%B61%EF%BC%9A%E8%A1%A8%E6%A0%BCtable%E9%9C%80%E8%A6%81%E7%9A%84JSON%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E6%9E%84%E9%80%A0%2F</url>
+    <content type="text"><![CDATA[在任务分发子模块中，前端开发使用layui框架，layui的table模块允许后端人员简单便捷的构建动态美观的表格。与之前写前端时自己写表格不同，layui的表格需要接收到指定格式的json数据才能进行自动解析。之前因为一直没有注意到所以前端表格一直显示“返回数据格式有错误”的提示。接下来提供解决方法。 查找到官网上（layui表格文档）明确给出了表格能解析的JOSN格式为： 123456&#123; "code": 0, "msg": "", "count": 1000, "data": [&#123;&#125;, &#123;&#125;]&#125; 而之前我们返回的数据只有data字段后面的列表，所以要在后端对返回值进行特定格式的构造。 12345678910111213public String findplace( @RequestParam(required=false,defaultValue="1") int page, @RequestParam(required=false,defaultValue="15") int limit )&#123; List&lt;Place&gt; datas=placeservice.queryAllDataFromTable(page,limit); int countx= placeservice.queryAllCount(); // 构造json JSONObject jo = new JSONObject(); jo.put("code",0); jo.put("msg",""); jo.put("count",countx); jo.put("data", datas); return jo.toString(); &#125; 首先返回值改为String（因为要返回json格式），datas是从数据库中读取的所有任务的Place类的列表，最后通过JSONObject构造json格式的数据。并返回给前端表格进行解析。最后前端代码： 12345678910111213141516171819202122232425layui.use(['table', 'form', 'layer'], function()&#123; var table = layui.table; table.render(&#123; elem: '#placeTable' ,url:'http://localhost:8779/edge/fp' ,toolbar: '#topBarTool' //顶部工具栏 ,title: '用户数据表' ,cols: [[ &#123;field:'id', width:90, title: 'ID', align: "center",sort: true&#125; ,&#123;field:'jing', width:130, title: '经度',align: "center",edit: 'text'&#125; ,&#123;field:'wei', width:130, title: '纬度',align: "center",edit: 'text'&#125; ,&#123;field:'time', width:100, title: '时间',align: "center",sort: true,edit: 'text'&#125; ,&#123;field:'earn',width:100, title: '收益', align: "center",sort: true,edit: 'text'&#125; ,&#123;field:'pri', width:100, title: '优先级', align: "center",sort: true,templet: '#sexTpl'&#125; , &#123;minWidth:70, align:'center', toolbar: '#barDemo'&#125; ]] ,page: true //开启分页 ,limit: 5 ,done:function(res, curr, count)&#123; &#125; //数据回调方法 ,page: &#123; //支持传入 laypage 组件的所有参数 - 详见文档 layout: ['limit','count', 'prev', 'page', 'next', 'skip'] //自定义分页布局 ,groups: 1 //只显示 1 个连续页码 ,first: false //不显示首页 ,last: false //不显示尾页 &#125; &#125;);&#125;); 通过cols参数中的field直接绑定data字段值（place类list）中的属性构造表格。]]></content>
       <categories>
-          
-          <category> 前端 </category>
-          
-          <category> layui </category>
-          
+        <category>前端</category>
+        <category>layui</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> layui </tag>
-            
-            <tag> 前端 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Spring Cloud学习笔记</title>
-      <link href="/2019/08/11/Spring-Cloud%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-      <url>/2019/08/11/Spring-Cloud%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-      
-        <content type="html"><![CDATA[<p>记录SpringCloud学习过程中遇到的问题和求解，用书《Spring Cloud微服务实战》。持续更新。</p><a id="more"></a><h2 id="1-同时启动多个相同的springcloud服务-在不同端口开启相同的服务"><a href="#1-同时启动多个相同的springcloud服务-在不同端口开启相同的服务" class="headerlink" title="1.同时启动多个相同的springcloud服务(在不同端口开启相同的服务)"></a>1.同时启动多个相同的springcloud服务(在不同端口开启相同的服务)</h2><h3 id="1-1启动栏点击该服务的Edit-Configurations"><a href="#1-1启动栏点击该服务的Edit-Configurations" class="headerlink" title="1.1启动栏点击该服务的Edit Configurations"></a>1.1启动栏点击该服务的Edit Configurations</h3><img src="/2019/08/11/Spring-Cloud学习笔记/1-1.png"><h3 id="1-2具体配置"><a href="#1-2具体配置" class="headerlink" title="1.2具体配置"></a>1.2具体配置</h3><img src="/2019/08/11/Spring-Cloud学习笔记/1-2.png"><p>先点击1处图标，复制该服务，复制后出现一个Ddu和Ddu(1)，后者为复制出的新服务</p><p>然后在复制者的VM中填入   <strong>-Dserver.port=xxxx</strong>，即副本服务的端口号（注意与原本端口号应不一致）</p><p>最后在Run Dashboard中找到并启动Ddu(1)</p><img src="/2019/08/11/Spring-Cloud学习笔记/1-2-1.png"><h3 id="1-3查看配置结果"><a href="#1-3查看配置结果" class="headerlink" title="1.3查看配置结果"></a>1.3查看配置结果</h3><p>启动之后可在E的注册中心看见服务SERVICE-DDU的status栏有两个进程，运行在两个端口</p><img src="/2019/08/11/Spring-Cloud学习笔记/1-3.png">]]></content>
-      
-      
+      <tags>
+        <tag>layui</tag>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring Cloud学习笔记]]></title>
+    <url>%2F2019%2F08%2F11%2FSpring-Cloud%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[记录SpringCloud学习过程中遇到的问题和求解，用书《Spring Cloud微服务实战》。持续更新。 1.同时启动多个相同的springcloud服务(在不同端口开启相同的服务)1.1启动栏点击该服务的Edit Configurations 1.2具体配置 先点击1处图标，复制该服务，复制后出现一个Ddu和Ddu(1)，后者为复制出的新服务 然后在复制者的VM中填入 -Dserver.port=xxxx，即副本服务的端口号（注意与原本端口号应不一致） 最后在Run Dashboard中找到并启动Ddu(1) 1.3查看配置结果启动之后可在E的注册中心看见服务SERVICE-DDU的status栏有两个进程，运行在两个端口]]></content>
       <categories>
-          
-          <category> Java </category>
-          
-          <category> Spring Cloud </category>
-          
+        <category>Java</category>
+        <category>Spring Cloud</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Java </tag>
-            
-            <tag> Spring Cloud </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>高德地图API踩坑</title>
-      <link href="/2019/07/14/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEAPI%E8%B8%A9%E5%9D%91/"/>
-      <url>/2019/07/14/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEAPI%E8%B8%A9%E5%9D%91/</url>
-      
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​        做任务下发场景的时候，想获取车辆与任务地点之间的时间距离，最后还可以在前端对车辆轨迹有一个简单的展示。当时正好看到了高德地图一个开放的API，于是拿来用用。具体的使用方法官方手册写的已经十分详细，可以自行查看<a href="https://lbs.amap.com/。" target="_blank" rel="noopener">https://lbs.amap.com/。</a></p><p>​        下面写几个我用到的，以及一些坑，不定时更新。</p><a id="more"></a><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>​        map就是我们添加路径的容器，也就是打开导航后最先显示的空白的地图。        driving是新建一个路径规划的导航，可以添加指定的map，写明规划的panel和路径规划的策略等。（如果不需要图/panel就不用写，只取返回值）。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> AMap.Map(<span class="string">"container"</span>, &#123;    </span><br><span class="line">resizeEnable: <span class="literal">true</span>,    </span><br><span class="line">center: [<span class="number">116.397428</span>, <span class="number">39.90923</span>],<span class="comment">//地图中心点    </span></span><br><span class="line">mapStyle: <span class="string">"amap://styles/whitesmoke"</span>,    </span><br><span class="line">zoom: <span class="number">13</span> <span class="comment">//地图显示的缩放级别</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> driving = <span class="keyword">new</span> AMap.Driving(&#123;</span><br><span class="line">        map: map,</span><br><span class="line">        panel: <span class="string">"panel"</span></span><br><span class="line">        policy: AMap.DrivingPolicy.REAL_TRAFFIC</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>​        也可以添加监听鼠标点击，并且返回经纬度的功能。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map.on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"lnglat"</span>).value =e.lnglat.getLng() + <span class="string">','</span> + e.lnglat.getLat()</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h2 id="点标记"><a href="#点标记" class="headerlink" title="点标记"></a>点标记</h2><p>​        循环为多个点添加文字标签</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;msg2.length<span class="number">-2</span>;i++)&#123;    </span><br><span class="line"><span class="comment">//增加中间节点标签    </span></span><br><span class="line"><span class="keyword">var</span> marker = <span class="keyword">new</span> AMap.Marker(&#123;        </span><br><span class="line">position: [msg2[i].jing,msg2[i].wei]    </span><br><span class="line">&#125;);    </span><br><span class="line">marker.setMap(map);    <span class="comment">//设置鼠标划过点标记显示的文字提示</span></span><br><span class="line">    marker.setLabel(&#123;        </span><br><span class="line">offset: <span class="keyword">new</span> AMap.Pixel(<span class="number">15</span>, <span class="number">15</span>),        </span><br><span class="line">content: <span class="string">"id:"</span>+msg2[i].id   <span class="comment">//给点标记增加名称    </span></span><br><span class="line">&#125;);&#125;</span><br></pre></td></tr></table></figure><h2 id="路径规划添加多个途径点"><a href="#路径规划添加多个途径点" class="headerlink" title="路径规划添加多个途径点"></a>路径规划添加多个途径点</h2><p>​        途径点用数组传入，所以提前用循环加入。效果图如下：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> waypoints1 = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;msg2.length<span class="number">-2</span>;i++)&#123;    </span><br><span class="line">    <span class="keyword">var</span> temp = <span class="keyword">new</span> AMap.LngLat(msg2[i].jing,msg2[i].wei);</span><br><span class="line">    waypoints1.push(temp); </span><br><span class="line">&#125;</span><br><span class="line">driving.search(<span class="keyword">new</span> AMap.LngLat(j1, w1), <span class="keyword">new</span> AMap.LngLat(j2, w2),&#123;</span><br><span class="line">waypoints: waypoints1</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">status, result</span>) </span>&#123; <span class="comment">// result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult</span></span><br><span class="line"><span class="keyword">if</span> (status === <span class="string">'complete'</span>) &#123;                           </span><br><span class="line">        log.success(<span class="string">'绘制驾车路线完成'</span>) </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;           </span><br><span class="line">        log.error(<span class="string">'获取驾车数据失败：'</span> + result)&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><img src="/2019/07/14/高德地图API踩坑/111.png" title="This is an example image">]]></content>
-      
-      
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring Cloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[高德地图API踩坑]]></title>
+    <url>%2F2019%2F07%2F14%2F%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BEAPI%E8%B8%A9%E5%9D%91%2F</url>
+    <content type="text"><![CDATA[前言​ 做任务下发场景的时候，想获取车辆与任务地点之间的时间距离，最后还可以在前端对车辆轨迹有一个简单的展示。当时正好看到了高德地图一个开放的API，于是拿来用用。具体的使用方法官方手册写的已经十分详细，可以自行查看https://lbs.amap.com/。 ​ 下面写几个我用到的，以及一些坑，不定时更新。 初始化​ map就是我们添加路径的容器，也就是打开导航后最先显示的空白的地图。 driving是新建一个路径规划的导航，可以添加指定的map，写明规划的panel和路径规划的策略等。（如果不需要图/panel就不用写，只取返回值）。 1234567891011var map = new AMap.Map("container", &#123; resizeEnable: true, center: [116.397428, 39.90923],//地图中心点 mapStyle: "amap://styles/whitesmoke", zoom: 13 //地图显示的缩放级别 &#125;);var driving = new AMap.Driving(&#123; map: map, panel: "panel" policy: AMap.DrivingPolicy.REAL_TRAFFIC &#125;); ​ 也可以添加监听鼠标点击，并且返回经纬度的功能。 123map.on('click', function(e) &#123; document.getElementById("lnglat").value =e.lnglat.getLng() + ',' + e.lnglat.getLat() &#125;); 点标记​ 循环为多个点添加文字标签 12345678910for(var i=1;i&lt;msg2.length-2;i++)&#123; //增加中间节点标签 var marker = new AMap.Marker(&#123; position: [msg2[i].jing,msg2[i].wei] &#125;); marker.setMap(map); //设置鼠标划过点标记显示的文字提示 marker.setLabel(&#123; offset: new AMap.Pixel(15, 15), content: "id:"+msg2[i].id //给点标记增加名称 &#125;);&#125; 路径规划添加多个途径点​ 途径点用数组传入，所以提前用循环加入。效果图如下： 12345678910111213var waypoints1 = [];for(var i=1;i&lt;msg2.length-2;i++)&#123; var temp = new AMap.LngLat(msg2[i].jing,msg2[i].wei); waypoints1.push(temp); &#125;driving.search(new AMap.LngLat(j1, w1), new AMap.LngLat(j2, w2),&#123; waypoints: waypoints1 &#125;, function(status, result) &#123; // result 即是对应的驾车导航信息，相关数据结构文档请参考 https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult if (status === 'complete') &#123; log.success('绘制驾车路线完成') &#125; else &#123; log.error('获取驾车数据失败：' + result)&#125; &#125;);]]></content>
       <categories>
-          
-          <category> 前端 </category>
-          
+        <category>前端</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 高德地图API </tag>
-            
-            <tag> 数据可视化 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Sourcetree（git GUI）安装</title>
-      <link href="/2019/07/12/Sourcetree%EF%BC%88git-GUI%EF%BC%89%E5%AE%89%E8%A3%85/"/>
-      <url>/2019/07/12/Sourcetree%EF%BC%88git-GUI%EF%BC%89%E5%AE%89%E8%A3%85/</url>
-      
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​        之前项目组要使用git仓库来统一配置文件。因为我太懒了记不住git的命令行指令，所以就安了一个Sourcetree这个图像界面来管理我的git。有很多19年之前的教程里面都是使用了官方专业版本的软件，但是目前专业版本用户必须要注册他的账号，但是因为种种原因页面总是没有响应。所以只能下载<strong>企业版</strong>。</p><a id="more"></a><p>​        我下载的是3.1.3的企业版，亲测可用。</p><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><p>​        首先下载企业版的Sourcetree网址：<a href="https://www.sourcetreeapp.com/enterprise" target="_blank" rel="noopener">https://www.sourcetreeapp.com/enterprise</a></p><p>​        下载后打开安装包，点开我的电脑。在访问框内输入以下内容（注意不是右侧的搜索框，是左上的地址访问框，长条的那个）：</p><p>​        <strong>%LocalAppData%\Atlassian\SourceTree</strong></p><p>​        在这个路径下新建一个名为<strong>accounts.json</strong>的文件。写入如下代码保存后，再次打开下载的安装包就可以正常安装了：</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">"$id"</span>: <span class="string">"1"</span>,</span><br><span class="line">    <span class="attr">"$type"</span>: <span class="string">"SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity"</span>,</span><br><span class="line">    <span class="attr">"Authenticate"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"HostInstance"</span>: &#123;</span><br><span class="line">      <span class="attr">"$id"</span>: <span class="string">"2"</span>,</span><br><span class="line">      <span class="attr">"$type"</span>: <span class="string">"SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount"</span>,</span><br><span class="line">      <span class="attr">"Host"</span>: &#123;</span><br><span class="line">        <span class="attr">"$id"</span>: <span class="string">"3"</span>,</span><br><span class="line">        <span class="attr">"$type"</span>: <span class="string">"SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount"</span>,</span><br><span class="line">        <span class="attr">"Id"</span>: <span class="string">"atlassian account"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"BaseUrl"</span>: <span class="string">"https://id.atlassian.com/"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"Credentials"</span>: &#123;</span><br><span class="line">      <span class="attr">"$id"</span>: <span class="string">"4"</span>,</span><br><span class="line">      <span class="attr">"$type"</span>: <span class="string">"SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account"</span>,</span><br><span class="line">      <span class="attr">"Username"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">"Email"</span>: <span class="literal">null</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"IsDefault"</span>: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
+      <tags>
+        <tag>高德地图API</tag>
+        <tag>数据可视化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Sourcetree（git GUI）安装]]></title>
+    <url>%2F2019%2F07%2F12%2FSourcetree%EF%BC%88git-GUI%EF%BC%89%E5%AE%89%E8%A3%85%2F</url>
+    <content type="text"><![CDATA[前言​ 之前项目组要使用git仓库来统一配置文件。因为我太懒了记不住git的命令行指令，所以就安了一个Sourcetree这个图像界面来管理我的git。有很多19年之前的教程里面都是使用了官方专业版本的软件，但是目前专业版本用户必须要注册他的账号，但是因为种种原因页面总是没有响应。所以只能下载企业版。 ​ 我下载的是3.1.3的企业版，亲测可用。 安装步骤​ 首先下载企业版的Sourcetree网址：https://www.sourcetreeapp.com/enterprise ​ 下载后打开安装包，点开我的电脑。在访问框内输入以下内容（注意不是右侧的搜索框，是左上的地址访问框，长条的那个）： ​ %LocalAppData%\Atlassian\SourceTree ​ 在这个路径下新建一个名为accounts.json的文件。写入如下代码保存后，再次打开下载的安装包就可以正常安装了： 123456789101112131415161718192021222324[ &#123; "$id": "1", "$type": "SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity", "Authenticate": true, "HostInstance": &#123; "$id": "2", "$type": "SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount", "Host": &#123; "$id": "3", "$type": "SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount", "Id": "atlassian account" &#125;, "BaseUrl": "https://id.atlassian.com/" &#125;, "Credentials": &#123; "$id": "4", "$type": "SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account", "Username": "", "Email": null &#125;, "IsDefault": false &#125;]]]></content>
       <categories>
-          
-          <category> git </category>
-          
+        <category>git</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> git </tag>
-            
-            <tag> Sourcetree </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>2019北邮计算机803考研经验分享（3）【冲刺篇】</title>
-      <link href="/2019/07/12/2019%E5%8C%97%E9%82%AE%E8%AE%A1%E7%AE%97%E6%9C%BA803%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%EF%BC%883%EF%BC%89%E3%80%90%E5%86%B2%E5%88%BA%E7%AF%87%E3%80%91/"/>
-      <url>/2019/07/12/2019%E5%8C%97%E9%82%AE%E8%AE%A1%E7%AE%97%E6%9C%BA803%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%EF%BC%883%EF%BC%89%E3%80%90%E5%86%B2%E5%88%BA%E7%AF%87%E3%80%91/</url>
-      
-        <content type="html"><![CDATA[<h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><p>​        大约10月份国庆开始，着手做真题。真题书买张宇的那个真题大全解，写的很好，答案的形式也很好。我建议做真题的时候用一张活页纸或者白纸当答题卡，把答案写上面，正规一点，也方便第二次再做和错题查询。</p><a id="more"></a><p>​        前期速度慢一点从97开始就可以，卷子是肯定够的。两天或三天完成一篇，第一天做，第二天第三天整体错题和总结。给自己规定时间，一上午(争取3小时内完成)，98 99比较难，做的时候心里别慌踏踏实实写就行。97-04的做的时候可以翻翻书，但是后面我建议还是独立完成，不要不会了就看书看答案，当然一些考前背一背喝前摇一摇的公式还是可以查的。</p><p>​        前期发现哪里有缺漏，赶紧第二天去看一看这里的知识点，做一些这里之前的错题之类的，<strong>及时巩固</strong>。到后面08-15就提升自己的速度，一天写一个，必须在3小时内完成。</p><p>​        2010年后的真题要反复做，之前的真题要再过一遍错题，如果有做的特别不好的年份也可以做一遍。<u>数学和英语真题都是要做2+的，所以不要刻意去记或者回想答案</u>。不会的地方及时补缺，重要的是，数学做题手感很重要，隔三天不做题那水平就会大打折扣，所以一定不要中断这个过程。</p><p>​        做多了真题就会发现，概率论、线代还有高数的多重积分那里题型非常固定，这样前面提过的总结框架的方法就派上用场了，一定要<strong><u>善于总结和反思</u></strong>，虽然多做题也很好但是吃死题海战术也不是一个很聪明的方法。</p><p>​        最后留3套卷，考前一周模考。 建议留17 18 19。</p><h2 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h2><h3 id="整套模考"><a href="#整套模考" class="headerlink" title="整套模考"></a>整套模考</h3><p>​        基础阶段阅读（04-12/13）都做的差不多了就可以开始冲刺阶段（12/13年开始整套模考），其实应该能感觉得自己思维能力的提升和方式的转变。整套题的做题顺序，我的建议是阅读-新题型-翻译-完型。给自己规定时间最好在2小时内完成以上的内容。写完了一起对答案。先不写作文，最后留2套完整卷子，考前几天做做训练手感。</p><p>​        一定要重视10年内的真题单词。大概11月份开始有计划的开始学<strong>新题型</strong>，这个不难唐叔有大概2小时的课，听那个就行了，然后把04以后的新题型刷2遍，最后复习复习就行。</p><p>​        完型不用刻意的练，跟着大阅读做就行，你会发现阅读水平上了之后，你的语感会变得很好，完型水平自然就上来了。做个几年的真题就行，另外整套卷子里，最后做完型，你懂的。</p><p>​        翻译后期没有时间就跟着整套卷子练一下，没办法还是得有取舍。</p><h3 id="作文"><a href="#作文" class="headerlink" title="作文"></a>作文</h3><p>​        当13-17年的卷子做完后，你就可以开始学作文了，买本<strong>王江涛的高分写作</strong>，听一下他的2020救命班或者强化班，跟着他走就完事你大爷还是你大爷。跟着背作文，前期你会觉得难，但是跟后期政治一比，英语作文不算事儿。救命班应该会给压5-6篇作文，你要是不放心，就早点开始背，把那10篇他给压得大作文都背了，不用背模拟的，足够了。小作文也是先听听他讲的，各种形式的背个一两篇，小作文没法押题主要是看发挥了，大作文水平上来了小作文绝对没毛病。</p><p>​        模板我特别不建议，这几年查的很严，套模板会比你写一堆简单句分数还低，不多说了。</p><p>​        我开始的比较晚，大概10月中旬，当时背了6篇大作文（必须滚瓜烂熟，每天早上晚上各背一遍），2篇小作文（时间实在不够了）。结果你猜怎么着，两篇作文真的被我押上了。考场上翻开作文差点笑出声，整个状态就上来了，迅速的写完作文然后开始开心的做阅读（最后的顺序，可以先4篇阅读再作文，也可以先作文，看自己的习惯）。</p><p>​        有人会质疑，背作文真的有用吗？我想说其实你背的不只是作文，而是人家的写作思路和表达方式。就拿19大作文来说，虽然题目是没背过的，但是写作思路（如何引出主题，对比讨论）、与主题相近的句子、经典的句型蹭蹭的往出蹦，最后我写作文的过程变成了一个挑选好句子替换主题词的过程。</p><p>​        具体的还是要看王江涛的课，总之一句话，多背多记跟着道长不迷路。另外在背作文的阶段要做以前的真题阅读，阅读不能停，如果所有04-17的都做过2-3次了，实在没题做，你可以买本英语二。英语二本质上来说和文章和英语一难度相似，思路一致，只是提问简单了而已，所以可以拿来练手，主要是不能断了阅读英文文章。于此同时，单词尤其是近10年真题单词也不能放掉，时间还是很紧的，自己要合理安排。</p><h2 id="政治"><a href="#政治" class="headerlink" title="政治"></a>政治</h2><p>​        跟紧<strong>肖秀荣</strong>不迷路！如果听课结束的早我建议你再做一遍1000题里<u>马原的多选题</u>(先多选有时间再单选)，<u>毛中特五位一体四个全面新民主</u>那的多选题，买一本徐涛背诵笔记，背史纲的各种东西，不要浮躁，这一阶段把选择题底子打牢。安心等待肖四肖八出版。</p><p>​        肖八的大题没时间可以先不管，把选择题出现的知识点，注意不是答案，而是<strong>涉及的知识点</strong>，自己整理出来，最好把对应1000题里的错题也看看，把关键的一起整理一下，马原毛中特史纲思修分开整理。整理知识点有助于减轻后期背诵压力。</p><p>​        肖四大概在考试前10多天出来，肖四选择大多数是肖八原题，可以用来模考，<strong><u>肖四的大题必须滚瓜烂熟</u></strong>，后几天必须空出时间每天背几个小时政治！你大爷还是你大爷不服不行，另外后期不要心慌，每年都有人阴谋论还不是考前紧张考后真香。</p><p>​        政治后期心态会很慌，但是我还是要说一句就好好总结1000题的选择和肖八肖四的选择知识点、错题，考前拿出来背背。还有肖四，大题一定要滚瓜烂熟，及时复习。上60还是没问题的，北京地区，政治上60就算正常水平不会拉分了。</p><h2 id="专业课"><a href="#专业课" class="headerlink" title="专业课"></a>专业课</h2><p>​        四本书都看完后，开始冲刺阶段，差不多11月之前开始。买一本<strong>王道的408真题</strong>。一定要重视真题，最开始做说不定会崩溃，我做第一篇的那天晚上就失眠了，因为真的不会做，选择题错了快一半，大题根本没写字。</p><p>​        我想说，这都是正常的，别慌。后来我找了一个学长聊了聊，他劝我不要着急，不会的就翻书查，实在不会就看解析，但是，一定要看懂解析。<strong>这个阶段总结就十分十分重要</strong>。因为你没有时间去再温习一遍书籍，只能靠题去帮你复习，刷题为王。前期2-3天一套。先做题，不确定的选择题或者错题的涉及到的知识点的相关章节，一定要仔细的看，然后总结在笔记上。相近的题型总结到大题。</p><p>​        大题前两套基本是不会做的，没关系，看完题干理解一下就看解析，看懂为止。看懂后合上书，再看题干自己做一遍。做了两套之后你会发现大题的题型很局限，所以<strong>一定要总结相似题型！！！</strong>到了后面的卷子就先自己思考试着做一下，然后看答案看解析总结。</p><p>​        大题真的都是有套路的，比如计组内存cache那里可能会与虚拟内存即页那里相结合来出题，如果不理解就会蒙圈，对于这一类问题就要牢牢把握存储容量和地址位数的关系。还有计网里面算IP，选择路由器，算子网之类的，都是有套路的。</p><p>​        最后，如果你能顺利做出408的大题或者做出一半，那你就没问题了。因为最后你做803真题就知道了，是真尼玛简单。如果408是S++那么803就是A–。所以说不要慌，就按照题目来覆盖知识点，好好总结选择题，规整大题的知识点，没问题的。803有些题选择题比较狗，但是没关系，<strong><u>努力刷题，攻克难题，总结类似题</u></strong>，随便打个110+还是稳妥的。110应该算还可以的分数，大部分人集中在100左右，130算很高分了一般这个分数的人总分都390+了，这个分布应该懂得不多说了。</p><p>​        考前2周，找803真题来做，可以问一下自己的学长学姐或者北邮人论坛上应该也有。或者评论里留个邮箱，我要是能找到的话就发，但是没有19年的。这个真题都是没十分正确的答案的，做来练练手就好，不必较真儿。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​        学习相关的就更到这里了，有不明白的可以在评论里留言我会及时回复大家的。接下来可能会更一些考前心态调整/心路历程、以及报考的相关建议之类的。</p><p>​        暑假正值考研的攻坚期，大家要努力复习，同时也要兼顾身体健康。预祝大家复习顺利，取得自己满意的分数。</p><p>​        <strong>最后，欢迎报考北京邮电大学，See  U  In  BUPT！</strong></p>]]></content>
-      
-      
+      <tags>
+        <tag>git</tag>
+        <tag>Sourcetree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019北邮计算机803考研经验分享（3）【冲刺篇】]]></title>
+    <url>%2F2019%2F07%2F12%2F2019%E5%8C%97%E9%82%AE%E8%AE%A1%E7%AE%97%E6%9C%BA803%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%EF%BC%883%EF%BC%89%E3%80%90%E5%86%B2%E5%88%BA%E7%AF%87%E3%80%91%2F</url>
+    <content type="text"><![CDATA[数学​ 大约10月份国庆开始，着手做真题。真题书买张宇的那个真题大全解，写的很好，答案的形式也很好。我建议做真题的时候用一张活页纸或者白纸当答题卡，把答案写上面，正规一点，也方便第二次再做和错题查询。 ​ 前期速度慢一点从97开始就可以，卷子是肯定够的。两天或三天完成一篇，第一天做，第二天第三天整体错题和总结。给自己规定时间，一上午(争取3小时内完成)，98 99比较难，做的时候心里别慌踏踏实实写就行。97-04的做的时候可以翻翻书，但是后面我建议还是独立完成，不要不会了就看书看答案，当然一些考前背一背喝前摇一摇的公式还是可以查的。 ​ 前期发现哪里有缺漏，赶紧第二天去看一看这里的知识点，做一些这里之前的错题之类的，及时巩固。到后面08-15就提升自己的速度，一天写一个，必须在3小时内完成。 ​ 2010年后的真题要反复做，之前的真题要再过一遍错题，如果有做的特别不好的年份也可以做一遍。数学和英语真题都是要做2+的，所以不要刻意去记或者回想答案。不会的地方及时补缺，重要的是，数学做题手感很重要，隔三天不做题那水平就会大打折扣，所以一定不要中断这个过程。 ​ 做多了真题就会发现，概率论、线代还有高数的多重积分那里题型非常固定，这样前面提过的总结框架的方法就派上用场了，一定要善于总结和反思，虽然多做题也很好但是吃死题海战术也不是一个很聪明的方法。 ​ 最后留3套卷，考前一周模考。 建议留17 18 19。 英语整套模考​ 基础阶段阅读（04-12/13）都做的差不多了就可以开始冲刺阶段（12/13年开始整套模考），其实应该能感觉得自己思维能力的提升和方式的转变。整套题的做题顺序，我的建议是阅读-新题型-翻译-完型。给自己规定时间最好在2小时内完成以上的内容。写完了一起对答案。先不写作文，最后留2套完整卷子，考前几天做做训练手感。 ​ 一定要重视10年内的真题单词。大概11月份开始有计划的开始学新题型，这个不难唐叔有大概2小时的课，听那个就行了，然后把04以后的新题型刷2遍，最后复习复习就行。 ​ 完型不用刻意的练，跟着大阅读做就行，你会发现阅读水平上了之后，你的语感会变得很好，完型水平自然就上来了。做个几年的真题就行，另外整套卷子里，最后做完型，你懂的。 ​ 翻译后期没有时间就跟着整套卷子练一下，没办法还是得有取舍。 作文​ 当13-17年的卷子做完后，你就可以开始学作文了，买本王江涛的高分写作，听一下他的2020救命班或者强化班，跟着他走就完事你大爷还是你大爷。跟着背作文，前期你会觉得难，但是跟后期政治一比，英语作文不算事儿。救命班应该会给压5-6篇作文，你要是不放心，就早点开始背，把那10篇他给压得大作文都背了，不用背模拟的，足够了。小作文也是先听听他讲的，各种形式的背个一两篇，小作文没法押题主要是看发挥了，大作文水平上来了小作文绝对没毛病。 ​ 模板我特别不建议，这几年查的很严，套模板会比你写一堆简单句分数还低，不多说了。 ​ 我开始的比较晚，大概10月中旬，当时背了6篇大作文（必须滚瓜烂熟，每天早上晚上各背一遍），2篇小作文（时间实在不够了）。结果你猜怎么着，两篇作文真的被我押上了。考场上翻开作文差点笑出声，整个状态就上来了，迅速的写完作文然后开始开心的做阅读（最后的顺序，可以先4篇阅读再作文，也可以先作文，看自己的习惯）。 ​ 有人会质疑，背作文真的有用吗？我想说其实你背的不只是作文，而是人家的写作思路和表达方式。就拿19大作文来说，虽然题目是没背过的，但是写作思路（如何引出主题，对比讨论）、与主题相近的句子、经典的句型蹭蹭的往出蹦，最后我写作文的过程变成了一个挑选好句子替换主题词的过程。 ​ 具体的还是要看王江涛的课，总之一句话，多背多记跟着道长不迷路。另外在背作文的阶段要做以前的真题阅读，阅读不能停，如果所有04-17的都做过2-3次了，实在没题做，你可以买本英语二。英语二本质上来说和文章和英语一难度相似，思路一致，只是提问简单了而已，所以可以拿来练手，主要是不能断了阅读英文文章。于此同时，单词尤其是近10年真题单词也不能放掉，时间还是很紧的，自己要合理安排。 政治​ 跟紧肖秀荣不迷路！如果听课结束的早我建议你再做一遍1000题里马原的多选题(先多选有时间再单选)，毛中特五位一体四个全面新民主那的多选题，买一本徐涛背诵笔记，背史纲的各种东西，不要浮躁，这一阶段把选择题底子打牢。安心等待肖四肖八出版。 ​ 肖八的大题没时间可以先不管，把选择题出现的知识点，注意不是答案，而是涉及的知识点，自己整理出来，最好把对应1000题里的错题也看看，把关键的一起整理一下，马原毛中特史纲思修分开整理。整理知识点有助于减轻后期背诵压力。 ​ 肖四大概在考试前10多天出来，肖四选择大多数是肖八原题，可以用来模考，肖四的大题必须滚瓜烂熟，后几天必须空出时间每天背几个小时政治！你大爷还是你大爷不服不行，另外后期不要心慌，每年都有人阴谋论还不是考前紧张考后真香。 ​ 政治后期心态会很慌，但是我还是要说一句就好好总结1000题的选择和肖八肖四的选择知识点、错题，考前拿出来背背。还有肖四，大题一定要滚瓜烂熟，及时复习。上60还是没问题的，北京地区，政治上60就算正常水平不会拉分了。 专业课​ 四本书都看完后，开始冲刺阶段，差不多11月之前开始。买一本王道的408真题。一定要重视真题，最开始做说不定会崩溃，我做第一篇的那天晚上就失眠了，因为真的不会做，选择题错了快一半，大题根本没写字。 ​ 我想说，这都是正常的，别慌。后来我找了一个学长聊了聊，他劝我不要着急，不会的就翻书查，实在不会就看解析，但是，一定要看懂解析。这个阶段总结就十分十分重要。因为你没有时间去再温习一遍书籍，只能靠题去帮你复习，刷题为王。前期2-3天一套。先做题，不确定的选择题或者错题的涉及到的知识点的相关章节，一定要仔细的看，然后总结在笔记上。相近的题型总结到大题。 ​ 大题前两套基本是不会做的，没关系，看完题干理解一下就看解析，看懂为止。看懂后合上书，再看题干自己做一遍。做了两套之后你会发现大题的题型很局限，所以一定要总结相似题型！！！到了后面的卷子就先自己思考试着做一下，然后看答案看解析总结。 ​ 大题真的都是有套路的，比如计组内存cache那里可能会与虚拟内存即页那里相结合来出题，如果不理解就会蒙圈，对于这一类问题就要牢牢把握存储容量和地址位数的关系。还有计网里面算IP，选择路由器，算子网之类的，都是有套路的。 ​ 最后，如果你能顺利做出408的大题或者做出一半，那你就没问题了。因为最后你做803真题就知道了，是真尼玛简单。如果408是S++那么803就是A–。所以说不要慌，就按照题目来覆盖知识点，好好总结选择题，规整大题的知识点，没问题的。803有些题选择题比较狗，但是没关系，努力刷题，攻克难题，总结类似题，随便打个110+还是稳妥的。110应该算还可以的分数，大部分人集中在100左右，130算很高分了一般这个分数的人总分都390+了，这个分布应该懂得不多说了。 ​ 考前2周，找803真题来做，可以问一下自己的学长学姐或者北邮人论坛上应该也有。或者评论里留个邮箱，我要是能找到的话就发，但是没有19年的。这个真题都是没十分正确的答案的，做来练练手就好，不必较真儿。 总结​ 学习相关的就更到这里了，有不明白的可以在评论里留言我会及时回复大家的。接下来可能会更一些考前心态调整/心路历程、以及报考的相关建议之类的。 ​ 暑假正值考研的攻坚期，大家要努力复习，同时也要兼顾身体健康。预祝大家复习顺利，取得自己满意的分数。 ​ 最后，欢迎报考北京邮电大学，See U In BUPT！]]></content>
       <categories>
-          
-          <category> 考研 </category>
-          
+        <category>考研</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 考研 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>2019北邮计算机803考研经验分享（2）【强化篇】</title>
-      <link href="/2019/07/12/2019%E5%8C%97%E9%82%AE%E8%AE%A1%E7%AE%97%E6%9C%BA803%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%EF%BC%882%EF%BC%89%E3%80%90%E5%BC%BA%E5%8C%96%E7%AF%87%E3%80%91/"/>
-      <url>/2019/07/12/2019%E5%8C%97%E9%82%AE%E8%AE%A1%E7%AE%97%E6%9C%BA803%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%EF%BC%882%EF%BC%89%E3%80%90%E5%BC%BA%E5%8C%96%E7%AF%87%E3%80%91/</url>
-      
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​        从暑假开始(期末结束后大概7月)，考研正式进入强化阶段，持续到差不多10月份。这个阶段也是决定你最终结果最重要的阶段，必须要认真对待。</p><p>​        对于暑假要不要回家的问题，我觉得回家待2周之内是可以接受的，但是你必须保证自己可以<u>自律学习</u>。即可以每天按时起床不赖床，起来后就开始学习，不能累了就倒下眯一会玩一会电脑看一会电视那种，晚上不熬夜看小说，不出去与朋友聚会，不去亲朋好友应酬等等，如果你说我差不多能做到那你就回去，但是时间最好不要超过两周。如果你觉得你不能，那就心里有点数，还是老老实实就在学校学习吧。</p><a id="more"></a><h2 id="数学强化"><a href="#数学强化" class="headerlink" title="数学强化"></a>数学强化</h2><p>​        这个暑假是数学综合能力提升的关键时期！！！必须认真对待。</p><p>​        高数和概率论你就听<strong>张宇的强化班</strong>，张宇的基础班有一点水，但是强化班真的不错。这个时候2020的应该已经出了，听最新的。讲义自己打印一份（各种公众号里都有），认认真真学。同样的，听完一章去把对应习题做了。这个时候可以做<strong>复习全书</strong>（虽然很厚但是题型真的蛮经典）还有<strong>张宇1000</strong>里面你剩下的ab组，复习错题也很重要（做错很多次的题建议重点标注，有代表性的可以整理错题本，冲刺阶段很有用），c组我只能说选做吧没时间不做也没毛病。<strong>无论做什么，都要吃透及时整理笔记和错题</strong>。</p><p>​    线代还是跟着<strong>李永乐</strong>就行，注意复习全书的题是他讲课的时候参考的习题，所以可以做张宇的题。</p><p>​        暑假有全天的时间复习，所以速度比基础班要更快了。至少在开学之前，高数强化应该全部结束，或者高数+线代强化全部结束。(如果基础班结束的早，那就提前开始强化班，我说的时间点都是最晚开始的时间点)。</p><p>​        数学这边，我建议自己能<u>构建知识框架</u>（看一遍书，合上之后自己想题型和做法等）。就比如高数后面的各种积分的几何意义、常值意义、特殊奇偶性和公式等；比如线代特征值有什么题型，矩阵有什么题型；尤其是概率论，题型很固定。自己总结在笔记上，再标出对应的例题，最后复习的时候看看简直清爽的八达鸟。（想看我整理的可以留个邮箱，但是估计开学才能发，暑假搬宿舍书已经封箱了= =）。</p><p>​        这个阶段要夯实解题的基本功，多做难题复杂题，一定要自己上手，不要觉得自己会了就不做了！提升做数学题的手感。</p><h2 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h2><p>​        这个阶段可以开始做阅读了(英语直接买一套<u>张剑的黄皮书真题</u>就完事。之前如果没做97-03可以从00年开始做，节省时间，每天1篇，最开始可以不用定时，看懂即可，错太多也不要紧别慌这都是正常的，我做97的时候错了8、9个。最多2周时间搞定这些老年份的阅读，兼顾背单词。</p><p>​        当你做到04年的时候，接下来<strong>唐叔唐迟</strong>要闪亮登场了，他真的是一个很厉害的老师阅读讲的贼好。在b站上找他的阅读，注意区分英语一和英语二，应该会找到一个2004–2017的合集，就听这个就行。这时也不能忘记<strong>重复背之前的单词</strong>哦。</p><p>​        这个阶段前期，每天做1/2篇阅读，然后听唐叔讲课，前几篇还会涉及到讲几个题型，你做好笔记，每个题型留一篇纸那种(方便以后整理错题)。</p><p>​        另外，要注意整理真题单词，大概从2010开始，近10年真题你要熟背，年份越近越重要，因为单词重复出现率真的很高！跟着唐叔，踏踏实实的做，一定要自己先做再听课！不要着急，每天一篇就行。等做到了13年，建议开始成套模考，就是4篇阅读一起做，但是最后要留3年的题来考前模拟，这个后期冲刺会再说。一定要重视真题单词。</p><p>​        04往后的真题建议弄两套，因为到了后期肯定要再做一次，我个别的年份做了三次。如果不怕麻烦整个铅笔也行，但还是最好弄两份，打印就行别怕麻烦。英语开始学习阅读之后，一定不要间断做题，手感是很重要的，我记得我英语巅峰时期应该是11月初，当时做整套的卷子完型错0-2个阅读错0-2个，但是后来因为忙于复习专业课和数学就间断了后来手感就没有那么好了。如果后期卷子都做了2遍实在没题，就买英语二的做。</p><p>​        完型和新题型这个阶段不用管，翻译跟着阅读练。</p><p>​        暑假我放了大块时间在数学上，英语有点耽搁了，只是在背单词。大概开学的时候才开始从04年开始跟着唐叔做，其实也来得及。另外对于何凯文和唐叔的争议，我建议，趁着时间早可以都听听，选择适合自己的。但是一旦确定下来就不要再改变了，要相信这个老师坚定的跟着他走，调整自己的思维去适应真题的思路。</p><h2 id="政治"><a href="#政治" class="headerlink" title="政治"></a>政治</h2><p>​        政治开学再开始其实就可以了，担心的话就8月中旬往后开始。我建议前期不用花太多时间，每天1-1.5个小时足够，买<strong>肖秀荣的1000题</strong>和精讲精练或者徐涛的那本任选，听徐涛老师的课就足够，肖大大讲课太催眠了hhh，听完课刷一下对应的1000题就完事。</p><p>​        <strong>哲学</strong>刚开始比较难，也是考察重点，要耐心的学下去，踏踏实实做题理解。到了史纲我觉得就是背，因为没啥需要理解的，跟着徐涛快速过一遍就OK。</p><p>​        然后思修法基我觉得其实不用听课的。。。。因为分值小的可怜而且题型就那么几个，做一下1000题总结一下笔记就好。而且后期的肖八肖四几乎都会涉及，你就自己看看书就行，如果不是想特别高分其实这部分1000题也不用做可以先放着，节约时间。</p><p>​        到了<strong>毛中特</strong>就比较重要，要好好听课，认真背，认真做题！尤其是五位一体和四个全面那里最为重点还有前面的新民主主义那里也常考。</p><h2 id="专业课"><a href="#专业课" class="headerlink" title="专业课"></a>专业课</h2><p>​        北邮计算机803专业课有4门，我从9月开学正式开始复习的，感觉后期时间有些吃紧，可以从8月开始比较好（但是暑假仍然以数学为主，看数学进度来安排其他科目）。</p><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>​        虽然学的时候可能觉得难但是数据结构确实是4门里最简单的了。书籍的话建议单独买一本天勤的数据结构然后其他买王道的。不需要看原教材，时间根本来不及。就踏踏实实看没什么特别的。争取1-2天结束一章的知识点加习题。</p><p>​        说几个考察重点，数组、链表、队列、栈、字符串、二叉树、图、排序、查找（诶一不小心全涵盖了？？）因为都是考核范围。前面四个很可能会出手写代码的大题，因为是最简单的。字符串、排序、查找选择题居多，尤其是排序查找各种特性（复杂度等）很容易考。树是重中之重，不多说了设计到树的处处是重点！图也很重要选择题多，若是了代码题估计考场上没几个写得出。</p><p>​        计组，操作系统，计网不想展开说了，他们三个的辅导书用<strong>王道</strong>别用天勤。老老实实学就行，争取1-2天过一章（知识点+习题）。碰到难的地方，比如计组芯片那里，还有数据结构字符串匹配那个算法，如果到了第三天还没看懂就跳过，因为四门科目知识点真的爆炸，抠一个超难的点性价比太低。但是不能一直一直跳哈，有困难还是需要客服的。课后习题以选择题为主，大题随缘，时间够就做，不够就放着。大题的提升阶段在后期，后面再说。</p>]]></content>
-      
-      
+      <tags>
+        <tag>考研</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019北邮计算机803考研经验分享（2）【强化篇】]]></title>
+    <url>%2F2019%2F07%2F12%2F2019%E5%8C%97%E9%82%AE%E8%AE%A1%E7%AE%97%E6%9C%BA803%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%EF%BC%882%EF%BC%89%E3%80%90%E5%BC%BA%E5%8C%96%E7%AF%87%E3%80%91%2F</url>
+    <content type="text"><![CDATA[前言​ 从暑假开始(期末结束后大概7月)，考研正式进入强化阶段，持续到差不多10月份。这个阶段也是决定你最终结果最重要的阶段，必须要认真对待。 ​ 对于暑假要不要回家的问题，我觉得回家待2周之内是可以接受的，但是你必须保证自己可以自律学习。即可以每天按时起床不赖床，起来后就开始学习，不能累了就倒下眯一会玩一会电脑看一会电视那种，晚上不熬夜看小说，不出去与朋友聚会，不去亲朋好友应酬等等，如果你说我差不多能做到那你就回去，但是时间最好不要超过两周。如果你觉得你不能，那就心里有点数，还是老老实实就在学校学习吧。 数学强化​ 这个暑假是数学综合能力提升的关键时期！！！必须认真对待。 ​ 高数和概率论你就听张宇的强化班，张宇的基础班有一点水，但是强化班真的不错。这个时候2020的应该已经出了，听最新的。讲义自己打印一份（各种公众号里都有），认认真真学。同样的，听完一章去把对应习题做了。这个时候可以做复习全书（虽然很厚但是题型真的蛮经典）还有张宇1000里面你剩下的ab组，复习错题也很重要（做错很多次的题建议重点标注，有代表性的可以整理错题本，冲刺阶段很有用），c组我只能说选做吧没时间不做也没毛病。无论做什么，都要吃透及时整理笔记和错题。 ​ 线代还是跟着李永乐就行，注意复习全书的题是他讲课的时候参考的习题，所以可以做张宇的题。 ​ 暑假有全天的时间复习，所以速度比基础班要更快了。至少在开学之前，高数强化应该全部结束，或者高数+线代强化全部结束。(如果基础班结束的早，那就提前开始强化班，我说的时间点都是最晚开始的时间点)。 ​ 数学这边，我建议自己能构建知识框架（看一遍书，合上之后自己想题型和做法等）。就比如高数后面的各种积分的几何意义、常值意义、特殊奇偶性和公式等；比如线代特征值有什么题型，矩阵有什么题型；尤其是概率论，题型很固定。自己总结在笔记上，再标出对应的例题，最后复习的时候看看简直清爽的八达鸟。（想看我整理的可以留个邮箱，但是估计开学才能发，暑假搬宿舍书已经封箱了= =）。 ​ 这个阶段要夯实解题的基本功，多做难题复杂题，一定要自己上手，不要觉得自己会了就不做了！提升做数学题的手感。 英语​ 这个阶段可以开始做阅读了(英语直接买一套张剑的黄皮书真题就完事。之前如果没做97-03可以从00年开始做，节省时间，每天1篇，最开始可以不用定时，看懂即可，错太多也不要紧别慌这都是正常的，我做97的时候错了8、9个。最多2周时间搞定这些老年份的阅读，兼顾背单词。 ​ 当你做到04年的时候，接下来唐叔唐迟要闪亮登场了，他真的是一个很厉害的老师阅读讲的贼好。在b站上找他的阅读，注意区分英语一和英语二，应该会找到一个2004–2017的合集，就听这个就行。这时也不能忘记重复背之前的单词哦。 ​ 这个阶段前期，每天做1/2篇阅读，然后听唐叔讲课，前几篇还会涉及到讲几个题型，你做好笔记，每个题型留一篇纸那种(方便以后整理错题)。 ​ 另外，要注意整理真题单词，大概从2010开始，近10年真题你要熟背，年份越近越重要，因为单词重复出现率真的很高！跟着唐叔，踏踏实实的做，一定要自己先做再听课！不要着急，每天一篇就行。等做到了13年，建议开始成套模考，就是4篇阅读一起做，但是最后要留3年的题来考前模拟，这个后期冲刺会再说。一定要重视真题单词。 ​ 04往后的真题建议弄两套，因为到了后期肯定要再做一次，我个别的年份做了三次。如果不怕麻烦整个铅笔也行，但还是最好弄两份，打印就行别怕麻烦。英语开始学习阅读之后，一定不要间断做题，手感是很重要的，我记得我英语巅峰时期应该是11月初，当时做整套的卷子完型错0-2个阅读错0-2个，但是后来因为忙于复习专业课和数学就间断了后来手感就没有那么好了。如果后期卷子都做了2遍实在没题，就买英语二的做。 ​ 完型和新题型这个阶段不用管，翻译跟着阅读练。 ​ 暑假我放了大块时间在数学上，英语有点耽搁了，只是在背单词。大概开学的时候才开始从04年开始跟着唐叔做，其实也来得及。另外对于何凯文和唐叔的争议，我建议，趁着时间早可以都听听，选择适合自己的。但是一旦确定下来就不要再改变了，要相信这个老师坚定的跟着他走，调整自己的思维去适应真题的思路。 政治​ 政治开学再开始其实就可以了，担心的话就8月中旬往后开始。我建议前期不用花太多时间，每天1-1.5个小时足够，买肖秀荣的1000题和精讲精练或者徐涛的那本任选，听徐涛老师的课就足够，肖大大讲课太催眠了hhh，听完课刷一下对应的1000题就完事。 ​ 哲学刚开始比较难，也是考察重点，要耐心的学下去，踏踏实实做题理解。到了史纲我觉得就是背，因为没啥需要理解的，跟着徐涛快速过一遍就OK。 ​ 然后思修法基我觉得其实不用听课的。。。。因为分值小的可怜而且题型就那么几个，做一下1000题总结一下笔记就好。而且后期的肖八肖四几乎都会涉及，你就自己看看书就行，如果不是想特别高分其实这部分1000题也不用做可以先放着，节约时间。 ​ 到了毛中特就比较重要，要好好听课，认真背，认真做题！尤其是五位一体和四个全面那里最为重点还有前面的新民主主义那里也常考。 专业课​ 北邮计算机803专业课有4门，我从9月开学正式开始复习的，感觉后期时间有些吃紧，可以从8月开始比较好（但是暑假仍然以数学为主，看数学进度来安排其他科目）。 数据结构​ 虽然学的时候可能觉得难但是数据结构确实是4门里最简单的了。书籍的话建议单独买一本天勤的数据结构然后其他买王道的。不需要看原教材，时间根本来不及。就踏踏实实看没什么特别的。争取1-2天结束一章的知识点加习题。 ​ 说几个考察重点，数组、链表、队列、栈、字符串、二叉树、图、排序、查找（诶一不小心全涵盖了？？）因为都是考核范围。前面四个很可能会出手写代码的大题，因为是最简单的。字符串、排序、查找选择题居多，尤其是排序查找各种特性（复杂度等）很容易考。树是重中之重，不多说了设计到树的处处是重点！图也很重要选择题多，若是了代码题估计考场上没几个写得出。 ​ 计组，操作系统，计网不想展开说了，他们三个的辅导书用王道别用天勤。老老实实学就行，争取1-2天过一章（知识点+习题）。碰到难的地方，比如计组芯片那里，还有数据结构字符串匹配那个算法，如果到了第三天还没看懂就跳过，因为四门科目知识点真的爆炸，抠一个超难的点性价比太低。但是不能一直一直跳哈，有困难还是需要客服的。课后习题以选择题为主，大题随缘，时间够就做，不够就放着。大题的提升阶段在后期，后面再说。]]></content>
       <categories>
-          
-          <category> 考研 </category>
-          
+        <category>考研</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 考研 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>2019北邮计算机803考研经验分享（1）【基础篇】</title>
-      <link href="/2019/07/11/2019%E5%8C%97%E9%82%AE%E8%AE%A1%E7%AE%97%E6%9C%BA803%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%EF%BC%881%EF%BC%89%E3%80%90%E5%9F%BA%E7%A1%80%E7%AF%87%E3%80%91/"/>
-      <url>/2019/07/11/2019%E5%8C%97%E9%82%AE%E8%AE%A1%E7%AE%97%E6%9C%BA803%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%EF%BC%881%EF%BC%89%E3%80%90%E5%9F%BA%E7%A1%80%E7%AF%87%E3%80%91/</url>
-      
-        <content type="html"><![CDATA[<h2 id="写在最前面"><a href="#写在最前面" class="headerlink" title="写在最前面"></a>写在最前面</h2><p>​        北邮信息安全专业，三年综合排名前50%，19年报考本校网络技术研究院学硕（计算机科学与技术），初试成绩380（数学一122，计算机综合119，英语一77，政治62），复试成绩80，综合成绩报考组第一，已录取。</p><p>​        其实这个经验分享好久前就写好了，给了几个关系好的学弟学妹，最近试着搭了自己的博客，想了想还是打算发出来，也算是对自己经历过的事情的一个记录吧。主要从基础阶段，强化阶段，冲刺阶段，报考和复试几个方面来谈，下面接入主题。</p><a id="more"></a><h2 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h2><p>​        对于本校生来说，我觉得开始时间不用特别早，大概在3月份左右就可以。也就是说大三开学的时候，就应该正式进入每天定量的复习了。但是据我观察数学应该是每年越来越难的（毕竟考生越来越多），如果觉得自己数学基础一般也可以提前学，怎么学后面再说。英语单词也是尽早背后期压力比较小。</p><p>​        初期阶段是 【<strong>3月(或更早)–暑假开始前</strong>】这个阶段，主要进行大面积的<strong>数学复习</strong>，英语基础打底（<strong>背单词</strong>）的复习。</p><h3 id="①-数学复习方法"><a href="#①-数学复习方法" class="headerlink" title="① 数学复习方法"></a>① 数学复习方法</h3><p>​        <strong>1-高数</strong>：这个阶段的数学我建议你直接听<strong>汤家凤老师的数学基础班</strong>(若2020还没出，听19的也没关系，数学每年大纲都没啥变动)。汤老师认真负责尤其是基础差的，可以说是手把手教你怎么做题那种，跟着听课记笔记就可以(基础班的高数一定要跟着汤老师做笔记啊！)。最好一次性(1-2天，如果时间不够3天也可以)听完一章，比如第一章极限，然后用1-2天把练习册对应的习题做了，<strong>一定要重视自己动手做题的阶段</strong>！什么练习册一会说。这样大概一周以内完成一章的学习的速度进行。</p><p>​        <strong>2-线代</strong>：全程抱紧李永乐大腿就行。也是这个阶段先听基础班，然后做题。听课可以在笔记本上补充他这个薄讲义没有的东西，不用全部记录。</p><p>​        <strong>3-概率论</strong>：有人推王式安，但我听不下去他讲课，你可以试试，或者听张宇的基础班也行，汤老的概率论有点尴尬，不聊了。套路还是一样的。注意线代和概率论的题没有高数的多，做题时间可以相对缩短，而且可能这个时候到了期末，概率论后期那些东西可以适当跳过(尤其是数字特征以后的东西看不懂的先跳过，也别做题，但是数字特征部分还是很重要的要重视)。</p><p>​        <strong>4-书目推荐</strong>：高数买一本张宇18讲(不是张宇带你学，别买错了)，线代买一本李永乐线性代数就足够，概率论买一本张宇的概率论9讲。这三本都是属于半参考书性质的，有知识公式例题，当然习题可能量比较少。</p><p>​        我建议补充一本张宇的1000题或者汤家凤的1800题，我买的是1800，太多了没做完，我认为如果听汤老的课，可以做宇哥的题，这样覆盖范围更广。线性代数一定以李永乐的那本讲义为主，再做其他的！(1000题可以只做A B组，c组的太难，基础阶段可以不管)，如果有精力我建议再加一本复习全书，这本书的高数和概率论部分的习题都非常经典，可以在强化阶段做。    </p><h3 id="②-英语复习方法"><a href="#②-英语复习方法" class="headerlink" title="② 英语复习方法"></a>② 英语复习方法</h3><p>​        我英语基础差（相对年纪其他同学来说），四级510左右？六级490+低空飘过。正因为我基础差，所以花了挺多时间在英语上的，最后成绩出来我还是挺满意的毕竟北京区（不是王婆卖瓜，因为真的花了蛮多时间，逃~）。</p><p>​        基础这个阶段我建议你就踏踏实实背单词，攻克长难句。单词不用去听课纯属浪费时间，买一本单词书，红宝书或者何凯文1575，讲道理何凯文虽然是个渣渣但是这本单词书涵盖了很多真题的单词，挺棒的，每天背1个list，注意及时复习，争取在一个半月内背诵完一遍，然后再来一遍，争取一个月内完成。没错，单词不在乎你看了多少，而在于你是否反复记住了。背单词一定要耐心，每天分出2个小时来，不要急躁，不要觉得没用，考研是必须要求词汇量的，只要坚持就一定会有成果。</p><p>​        <strong>这里要强调一下</strong>：我同期有好几个同学，因为英语基础不好，或者说觉得英语分值小，采取了放弃英语，专攻数学专业课的方法。我认识的人里，这样的同学或者是总分上了330，但是英语最后没过国家线（国家线是底线，就算打了400分，只要有一科不过线也白搭），或者是整体垮掉，英语低其他也低。几乎没有人险胜。所以我劝有这样想法的学弟学妹不要投机取巧，不要轻易放弃，踏踏实实复习，只要你付出的够多，最后肯定会有满意的分数。</p><p>​        回归正题，背了两遍单词（或3遍）之后就可以开始学长难句和阅读的基础，我建议听唐叔的语法基础班，大概只有6 7节课，每天听一节好好消化。<strong>不要做模拟的阅读题</strong>，因为那和真题套路相差甚远。</p><p>​        如果这个也听完了还没到暑假，我建议可以听一听<strong>唐静老师的翻译强化班</strong>，没错直接听强化，讲义自己打印一份，因为翻译本身就是长难句，可以帮助你夯实阅读基础。我建议听完被动结构翻译成主动那块结束就行了，足够了。也可以不听这个，做97-2003年的真题阅读，每天一篇，好好看解析。或者两个穿插着，翻译为主阅读为辅，看你时间。那个完型先不用管。<br>​        注意，这个的时候也要每天复习单词。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>​        基础阶段就是这样啦，这个阶段我没有看专业课和政治，跨考不算。因为北邮的专业课虽然多，但是试卷难度还可以，如果基础差也可以提前看看数据结构，前提是你数学学的很好，很踏实进度也跟得上。具体的专业课复习知识写在强化和冲刺篇里。政治不用着急，相信肖大大（逃~。</p><p>​        这个阶段就是要沉得住气，好好学数学和英语，锻炼计算能力理解概念，夯实词汇量。切记和别人攀比速度，只要完成自己阶段性目标就好。</p><p>​        另外，如果下定决心考研（比如我，连保研的边也沾不到），就不要那么在乎这学期的成绩、排名啦。尽量选写论文的课，水课，能水就水，不要挂科就好了。因为不出国或者保研的话这个成绩都是没什么特别重要的。人总要学会取舍的嘛，初试成绩高才是硬道理，别的都是浮云。</p>]]></content>
-      
-      
+      <tags>
+        <tag>考研</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019北邮计算机803考研经验分享（1）【基础篇】]]></title>
+    <url>%2F2019%2F07%2F11%2F2019%E5%8C%97%E9%82%AE%E8%AE%A1%E7%AE%97%E6%9C%BA803%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%EF%BC%881%EF%BC%89%E3%80%90%E5%9F%BA%E7%A1%80%E7%AF%87%E3%80%91%2F</url>
+    <content type="text"><![CDATA[写在最前面​ 北邮信息安全专业，三年综合排名前50%，19年报考本校网络技术研究院学硕（计算机科学与技术），初试成绩380（数学一122，计算机综合119，英语一77，政治62），复试成绩80，综合成绩报考组第一，已录取。 ​ 其实这个经验分享好久前就写好了，给了几个关系好的学弟学妹，最近试着搭了自己的博客，想了想还是打算发出来，也算是对自己经历过的事情的一个记录吧。主要从基础阶段，强化阶段，冲刺阶段，报考和复试几个方面来谈，下面接入主题。 基础篇​ 对于本校生来说，我觉得开始时间不用特别早，大概在3月份左右就可以。也就是说大三开学的时候，就应该正式进入每天定量的复习了。但是据我观察数学应该是每年越来越难的（毕竟考生越来越多），如果觉得自己数学基础一般也可以提前学，怎么学后面再说。英语单词也是尽早背后期压力比较小。 ​ 初期阶段是 【3月(或更早)–暑假开始前】这个阶段，主要进行大面积的数学复习，英语基础打底（背单词）的复习。 ① 数学复习方法​ 1-高数：这个阶段的数学我建议你直接听汤家凤老师的数学基础班(若2020还没出，听19的也没关系，数学每年大纲都没啥变动)。汤老师认真负责尤其是基础差的，可以说是手把手教你怎么做题那种，跟着听课记笔记就可以(基础班的高数一定要跟着汤老师做笔记啊！)。最好一次性(1-2天，如果时间不够3天也可以)听完一章，比如第一章极限，然后用1-2天把练习册对应的习题做了，一定要重视自己动手做题的阶段！什么练习册一会说。这样大概一周以内完成一章的学习的速度进行。 ​ 2-线代：全程抱紧李永乐大腿就行。也是这个阶段先听基础班，然后做题。听课可以在笔记本上补充他这个薄讲义没有的东西，不用全部记录。 ​ 3-概率论：有人推王式安，但我听不下去他讲课，你可以试试，或者听张宇的基础班也行，汤老的概率论有点尴尬，不聊了。套路还是一样的。注意线代和概率论的题没有高数的多，做题时间可以相对缩短，而且可能这个时候到了期末，概率论后期那些东西可以适当跳过(尤其是数字特征以后的东西看不懂的先跳过，也别做题，但是数字特征部分还是很重要的要重视)。 ​ 4-书目推荐：高数买一本张宇18讲(不是张宇带你学，别买错了)，线代买一本李永乐线性代数就足够，概率论买一本张宇的概率论9讲。这三本都是属于半参考书性质的，有知识公式例题，当然习题可能量比较少。 ​ 我建议补充一本张宇的1000题或者汤家凤的1800题，我买的是1800，太多了没做完，我认为如果听汤老的课，可以做宇哥的题，这样覆盖范围更广。线性代数一定以李永乐的那本讲义为主，再做其他的！(1000题可以只做A B组，c组的太难，基础阶段可以不管)，如果有精力我建议再加一本复习全书，这本书的高数和概率论部分的习题都非常经典，可以在强化阶段做。 ② 英语复习方法​ 我英语基础差（相对年纪其他同学来说），四级510左右？六级490+低空飘过。正因为我基础差，所以花了挺多时间在英语上的，最后成绩出来我还是挺满意的毕竟北京区（不是王婆卖瓜，因为真的花了蛮多时间，逃~）。 ​ 基础这个阶段我建议你就踏踏实实背单词，攻克长难句。单词不用去听课纯属浪费时间，买一本单词书，红宝书或者何凯文1575，讲道理何凯文虽然是个渣渣但是这本单词书涵盖了很多真题的单词，挺棒的，每天背1个list，注意及时复习，争取在一个半月内背诵完一遍，然后再来一遍，争取一个月内完成。没错，单词不在乎你看了多少，而在于你是否反复记住了。背单词一定要耐心，每天分出2个小时来，不要急躁，不要觉得没用，考研是必须要求词汇量的，只要坚持就一定会有成果。 ​ 这里要强调一下：我同期有好几个同学，因为英语基础不好，或者说觉得英语分值小，采取了放弃英语，专攻数学专业课的方法。我认识的人里，这样的同学或者是总分上了330，但是英语最后没过国家线（国家线是底线，就算打了400分，只要有一科不过线也白搭），或者是整体垮掉，英语低其他也低。几乎没有人险胜。所以我劝有这样想法的学弟学妹不要投机取巧，不要轻易放弃，踏踏实实复习，只要你付出的够多，最后肯定会有满意的分数。 ​ 回归正题，背了两遍单词（或3遍）之后就可以开始学长难句和阅读的基础，我建议听唐叔的语法基础班，大概只有6 7节课，每天听一节好好消化。不要做模拟的阅读题，因为那和真题套路相差甚远。 ​ 如果这个也听完了还没到暑假，我建议可以听一听唐静老师的翻译强化班，没错直接听强化，讲义自己打印一份，因为翻译本身就是长难句，可以帮助你夯实阅读基础。我建议听完被动结构翻译成主动那块结束就行了，足够了。也可以不听这个，做97-2003年的真题阅读，每天一篇，好好看解析。或者两个穿插着，翻译为主阅读为辅，看你时间。那个完型先不用管。​ 注意，这个的时候也要每天复习单词。 小结​ 基础阶段就是这样啦，这个阶段我没有看专业课和政治，跨考不算。因为北邮的专业课虽然多，但是试卷难度还可以，如果基础差也可以提前看看数据结构，前提是你数学学的很好，很踏实进度也跟得上。具体的专业课复习知识写在强化和冲刺篇里。政治不用着急，相信肖大大（逃~。 ​ 这个阶段就是要沉得住气，好好学数学和英语，锻炼计算能力理解概念，夯实词汇量。切记和别人攀比速度，只要完成自己阶段性目标就好。 ​ 另外，如果下定决心考研（比如我，连保研的边也沾不到），就不要那么在乎这学期的成绩、排名啦。尽量选写论文的课，水课，能水就水，不要挂科就好了。因为不出国或者保研的话这个成绩都是没什么特别重要的。人总要学会取舍的嘛，初试成绩高才是硬道理，别的都是浮云。]]></content>
       <categories>
-          
-          <category> 考研 </category>
-          
+        <category>考研</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 考研 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2019/06/06/hello-world/"/>
-      <url>/2019/06/06/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><a id="more"></a><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>考研</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F06%2F06%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
 </search>
