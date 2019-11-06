@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="layui,前端,">
+  <meta name="keywords" content="Java,mybatis,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="因为前端要实现点击layui终端表格某一行，弹出该行对应终端的子任务表，所以要向后台回传该终端的ID，并且弹回的表格也要实现分页。所以先要在前端实现对应ID变量的回传，再在后端实现带条件的分页数据库查询。">
-<meta name="keywords" content="layui,前端">
+<meta name="description" content="实现一段时间范围内数据的查询">
+<meta name="keywords" content="Java,mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="layui框架3：表格table回传条件变量字段并分页">
-<meta property="og:url" content="http://yoursite.com/2019/09/29/layui框架3：表格table回传条件变量字段并分页/index.html">
+<meta property="og:title" content="Mybatis实现日期范围内查询">
+<meta property="og:url" content="http://yoursite.com/2019/11/06/Mybatis实现日期范围内查询/index.html">
 <meta property="og:site_name" content="Docin&#39;s Notes">
-<meta property="og:description" content="因为前端要实现点击layui终端表格某一行，弹出该行对应终端的子任务表，所以要向后台回传该终端的ID，并且弹回的表格也要实现分页。所以先要在前端实现对应ID变量的回传，再在后端实现带条件的分页数据库查询。">
+<meta property="og:description" content="实现一段时间范围内数据的查询">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/09/29/layui框架3：表格table回传条件变量字段并分页/1-1.png">
-<meta property="og:updated_time" content="2019-09-29T13:32:47.928Z">
+<meta property="og:updated_time" content="2019-11-06T14:50:32.157Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="layui框架3：表格table回传条件变量字段并分页">
-<meta name="twitter:description" content="因为前端要实现点击layui终端表格某一行，弹出该行对应终端的子任务表，所以要向后台回传该终端的ID，并且弹回的表格也要实现分页。所以先要在前端实现对应ID变量的回传，再在后端实现带条件的分页数据库查询。">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/29/layui框架3：表格table回传条件变量字段并分页/1-1.png">
+<meta name="twitter:title" content="Mybatis实现日期范围内查询">
+<meta name="twitter:description" content="实现一段时间范围内数据的查询">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/29/layui框架3：表格table回传条件变量字段并分页/">
+  <link rel="canonical" href="http://yoursite.com/2019/11/06/Mybatis实现日期范围内查询/">
 
 
 
 
 
-  <title>layui框架3：表格table回传条件变量字段并分页 | Docin's Notes</title>
+  <title>Mybatis实现日期范围内查询 | Docin's Notes</title>
   
 
 
@@ -299,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/29/layui框架3：表格table回传条件变量字段并分页/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/Mybatis实现日期范围内查询/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Docin">
@@ -316,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">layui框架3：表格table回传条件变量字段并分页</h1>
+          <h1 class="post-title" itemprop="name headline">Mybatis实现日期范围内查询</h1>
         
 
         <div class="post-meta">
@@ -329,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-29T21:01:19+08:00">
-                2019-09-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-06T22:46:54+08:00">
+                2019-11-06
               </time>
             
 
@@ -352,19 +350,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/layui/" itemprop="url" rel="index">
-                    <span itemprop="name">layui</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -381,8 +368,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/09/29/layui框架3：表格table回传条件变量字段并分页/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/29/layui框架3：表格table回传条件变量字段并分页/" itemprop="commentCount"></span>
+                <a href="/2019/11/06/Mybatis实现日期范围内查询/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/06/Mybatis实现日期范围内查询/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -415,15 +402,18 @@
       
 
       
-        <p>因为前端要实现<strong>点击layui终端表格某一行，弹出该行对应终端的子任务表</strong>，所以要向后台回传该终端的ID，并且弹回的表格也要实现分页。所以先要在前端实现对应ID变量的回传，再在后端实现带条件的分页数据库查询。</p>
+        <p>实现一段时间范围内数据的查询</p>
 <a id="more"></a>
 
-<h3 id="1-layui添加回传变量字段"><a href="#1-layui添加回传变量字段" class="headerlink" title="1. layui添加回传变量字段"></a>1. layui添加回传变量字段</h3><p>​    通过where参数来指定回传变量和字段值，如图：</p>
-<p>​    <img src="/2019/09/29/layui框架3：表格table回传条件变量字段并分页/1-1.png"></p>
-<h3 id="2-layui在有条件字段的情况下分页"><a href="#2-layui在有条件字段的情况下分页" class="headerlink" title="2. layui在有条件字段的情况下分页"></a>2. layui在有条件字段的情况下分页</h3><p>​    查询数据库里所有终端ID为termId的行，在mapper里使用where并着limit进行查询。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryAllDataFromTable"</span> <span class="attr">resultMap</span>=<span class="string">"BaseResultMap"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.Integer"</span>&gt;</span></span><br><span class="line">		SELECT * FROM AIT_TASK</span><br><span class="line">    WHERE TERM_ID = #&#123;termId,jdbcType=INTEGER&#125;  limit #&#123;page&#125;,#&#123;limit&#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>前端通过layui的laydate控件可以获取选取的时间字符串，格式都为2019-11-06这种。</p>
+<p>在筛选数据的时候需要获取到指定<strong>时间范围内</strong>的数据，比如从2019-11-04到2019-11-09内的所有文件，在数据库搜索时可以使用以下的mysql语句。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"search"</span>  <span class="attr">resultMap</span>=<span class="string">"File"</span>&gt;</span></span><br><span class="line">    SELECT * FROM file</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"aid!=null"</span>&gt;</span></span><br><span class="line">            and aid=#&#123;aid&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"bid!=null"</span>&gt;</span></span><br><span class="line">            and bid=#&#123;bid&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"startDate!=null"</span>&gt;</span></span><br><span class="line">            &lt;![CDATA[  and DATE_FORMAT(mytime, '%Y-%m-%d ') &gt;=</span><br><span class="line">                    DATE_FORMAT(#&#123;startDate&#125;, '%Y-%m-%d')   ]]&gt;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"endDate!=null"</span>&gt;</span></span><br><span class="line">            &lt;![CDATA[  and DATE_FORMAT(mytime, '%Y-%m-%d') &lt;=</span><br><span class="line">                    DATE_FORMAT(#&#123;endDate&#125; , '%Y-%m-%d')    ]]&gt;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>​    controller里countx的值注意不能再使用前篇的查询所有行的函数，直接使用list.size()来传回总行数。</p>
+<p>其中aid和bid是两个查询条件变量。同时时间范围也是条件，起始时间的变量是startDate，截至时间的变量是endDate，<strong>mytime</strong>是数据库中存储日期的字段列名。</p>
+<p>所以对应dao层需要传四个变量：aid，bid，startDate，endDate。语句为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">List&lt;Ffile&gt; <span class="title">search</span><span class="params">(Integer aid,Integer bid,String startDate,String endDate)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以查询到满足aid和bid条件并且数据日期在startDate-endDate范围内的全部数据了。</p>
 
       
     </div>
@@ -470,9 +460,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/layui/" rel="tag"><i class="fa fa-tag"></i> layui</a>
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
           
-            <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+            <a href="/tags/mybatis/" rel="tag"><i class="fa fa-tag"></i> mybatis</a>
           
         </div>
       
@@ -485,8 +475,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/20/MacOS下MySQL可视化工具SequelPro/" rel="next" title="MacOS下MySQL可视化工具SequelPro">
-                <i class="fa fa-chevron-left"></i> MacOS下MySQL可视化工具SequelPro
+              <a href="/2019/10/22/python监控进程内存占用情况/" rel="next" title="python监控进程内存占用情况">
+                <i class="fa fa-chevron-left"></i> python监控进程内存占用情况
               </a>
             
           </div>
@@ -494,10 +484,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/29/Java-List类操作/" rel="prev" title="Java List类操作">
-                Java List类操作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -552,17 +538,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -640,22 +617,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-layui添加回传变量字段"><span class="nav-number">1.</span> <span class="nav-text">1. layui添加回传变量字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-layui在有条件字段的情况下分页"><span class="nav-number">2.</span> <span class="nav-text">2. layui在有条件字段的情况下分页</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
