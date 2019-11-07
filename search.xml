@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Mybatis实现日期范围内查询]]></title>
-    <url>%2F2019%2F11%2F06%2FMybatis%E5%AE%9E%E7%8E%B0%E6%97%A5%E6%9C%9F%E8%8C%83%E5%9B%B4%E5%86%85%E6%9F%A5%E8%AF%A2%2F</url>
-    <content type="text"><![CDATA[实现一段时间范围内数据的查询 前端通过layui的laydate控件可以获取选取的时间字符串，格式都为2019-11-06这种。 在筛选数据的时候需要获取到指定时间范围内的数据，比如从2019-11-04到2019-11-09内的所有文件，在数据库搜索时可以使用以下的mysql语句。 12345678910111213141516171819&lt;select id="search" resultMap="File"&gt; SELECT * FROM file &lt;where&gt; &lt;if test="aid!=null"&gt; and aid=#&#123;aid&#125; &lt;/if&gt; &lt;if test="bid!=null"&gt; and bid=#&#123;bid&#125; &lt;/if&gt; &lt;if test="startDate!=null"&gt; &lt;![CDATA[ and DATE_FORMAT(mytime, '%Y-%m-%d ') &gt;= DATE_FORMAT(#&#123;startDate&#125;, '%Y-%m-%d') ]]&gt; &lt;/if&gt; &lt;if test="endDate!=null"&gt; &lt;![CDATA[ and DATE_FORMAT(mytime, '%Y-%m-%d') &lt;= DATE_FORMAT(#&#123;endDate&#125; , '%Y-%m-%d') ]]&gt; &lt;/if&gt; &lt;/where&gt;&lt;/select&gt; 其中aid和bid是两个查询条件变量。同时时间范围也是条件，起始时间的变量是startDate，截至时间的变量是endDate，mytime是数据库中存储日期的字段列名。 所以对应dao层需要传四个变量：aid，bid，startDate，endDate。语句为 1List&lt;Ffile&gt; search(Integer aid,Integer bid,String startDate,String endDate); 这样就可以查询到满足aid和bid条件并且数据日期在startDate-endDate范围内的全部数据了。]]></content>
+    <title><![CDATA[SpringBoot+layui实现文件上传和下载(2)]]></title>
+    <url>%2F2019%2F11%2F07%2FSpringBoot-layui%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD-2%2F</url>
+    <content type="text"><![CDATA[前端依然是使用layui框架。后端使用Springboot搭建。这篇写下载。 解决下载文件中文被替换为下划线的问题。 1. 前端我是把下载按钮绑定在layui表格每一行的toolbar上了，单独写下载按钮也是可以的。这里简单贴一下重要的部分（不是全部实现代码）。 首先在html中定义表格的工具栏： 123&lt;script type="text/html" id="barDemo"&gt; &lt;a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="download"&gt;下载文件&lt;/a&gt;&lt;/script&gt; 然后在表格的cols里最后加一列工具栏,： 1&#123;title: '文件下载', toolbar: '#barDemo', align: "center"&#125; 最后在layui.table里加上对此表格工具栏的监听： 其中的tool(file)绑定的是表格的lay-filter，obj.event === ‘download’绑定的是工具栏按钮的lay-event。 点击工具栏按钮会获取相应行的数据，保存于obj中，可以通过访问它来获取需要的信息，比如这里我获取了该行对应的id。 1234567table.on('tool(file)', function(obj)&#123; var data = obj.data; var fileid = data.id; if(obj.event === 'download')&#123; window.location="http://localhost:9002/download?id="+fileid; &#125; &#125;); 下载其实就是相当于在浏览器输入文件地址，这里不推荐使用ajax，直接加载url就可以。 2. 后端1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950@RequestMapping(value = "/download" )@ResponseBody@CrossOriginpublic String downloadFileold(@RequestParam("id")Integer id, HttpServletResponse response) &#123; String url = null; String name = null; if(id!=null) &#123; //前端传回文件的id，通过查数据库获取文件的路径和文件的原本名称（非hash） url = fileService.getfile(id).getPath(); name = fileService.getfile(id).getFilename(); &#125;else &#123; return "error"; &#125; if(url==null) return "-1"; //新建临时文件 File file = new File(url); if (!file.exists()) &#123; return "-1"; &#125; //接下来是构造头部包括名称和编码的操作 response.reset(); try &#123; //使用注释掉的方法时中文名称会变为下划线，故要采用UTF8的编码方式 //response.setHeader("Content-Disposition", "attachment;fileName=" + name); response.addHeader("Content-Disposition", "attachment;filename=" +URLEncoder.encode(name, "UTF-8")); &#125; catch (UnsupportedEncodingException e) &#123; e.printStackTrace(); &#125; response.setHeader("Access-Control-Allow-Origin", "*"); //跨越请求 response.setContentType("application/force-download"); //下载 response.setContentType("multipart/form-data"); try &#123; //接下来时构造下载流的常规操作，我也不懂，就照着写吧hhhh InputStream inStream = new FileInputStream(url); OutputStream os = response.getOutputStream(); byte[] buff = new byte[1024]; int len = -1; while ((len = inStream.read(buff)) &gt; 0) &#123; os.write(buff, 0, len); &#125; os.flush(); os.close(); inStream.close(); &#125; catch (Exception e) &#123; e.printStackTrace(); return "-2"; &#125; return "0";&#125;]]></content>
       <categories>
         <category>Java</category>
+        <category>SpringBoot</category>
+        <category>layui</category>
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>SpringBoot</tag>
+        <tag>layui</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringBoot+layui实现文件上传和下载(1)]]></title>
+    <url>%2F2019%2F11%2F07%2FSpringBoot-layui%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD-1%2F</url>
+    <content type="text"><![CDATA[前端依然是使用layui框架，自带有文件上传的控件即upload，详细的用法见官方示例文档。后端使用Springboot搭建。 这里贴出我的实现过程，这篇先写上传。 1. 前端html部分绑定按钮的id，使用layui的样式，没什么好说的。 123&lt;button type="button" class="layui-btn layui-btn-primary" id="uploadExample"&gt; &lt;i class="layui-icon"&gt;&amp;#xe67c;&lt;/i&gt;文件上传&lt;/button&gt; js部分使用layui.upload组件，具体用法见注解 123456789101112131415161718layui.use('upload', function()&#123; var upload = layui.upload; //执行实例 var uploadInst = upload.render(&#123; elem: '#uploadExample' //绑定按钮id ,url: 'http://localhost:9002/uploadFile' //上传接口 ,accept: 'file' //接收类型为文件 ,auto: false //不允许自动上传，与下一行配合使用 ,bindAction: '#sub' //监听到点击提交按钮id=sub才可以上传 ,exts: 'csv' //接收文件后缀限定为csv（也可修改为其他） ,done: function(res)&#123; console.info(res); //成功后回调 &#125; ,error: function()&#123; //请求异常回调 &#125; &#125;);&#125;); 2. 后端后端接收文件，对文件名字做一个随机数hush，并将这个值作为新的文件名保存至本地，这样可以避免同名文件的覆盖问题。在数据库中存储二者对应关系就可以。具体的controller如下： 1234567891011121314151617181920212223242526272829@RequestMapping(value = "/uploadFile" , method = RequestMethod.POST)@ResponseBody@CrossOriginpublic Dos upload(@RequestParam("file") MultipartFile file)throws IOException &#123; //上传文件路径 String path = "F:\\uploadfile"; //上传文件名 String realname = file.getOriginalFilename();//文件的原本名称 String zhui = realname.substring(realname.lastIndexOf("."));//获取文件的后缀 String hash = Integer.toHexString(new Random().nextInt());//生成随机数作为文件名 String filename = hash + zhui; System.out.println("文件原名"+realname); System.out.println("文件新名称"+filename); File filepath = new File(path, filename); //判断路径是否存在，没有就创建一个 if (!filepath.getParentFile().exists()) &#123; filepath.getParentFile().mkdirs(); &#125; //将上传文件保存到一个目标文档中（文件名是hash名，不是原本的名字） File tempFile = new File(path + File.separator + filename); file.transferTo(tempFile); System.out.println("文件存储路径"+tempFile.getPath()); //接下来是存储文件名对应路径和hush到数据库，并返回结果到前端 Dos dfile= new Dos(); Dos.setPath(tempFile.getPath()); //存储路径 Dos.setFilename(realname); //原名 Dos.setFilenum(filename); //hush名 return ffile;&#125;]]></content>
+      <categories>
+        <category>Java</category>
+        <category>SpringBoot</category>
+        <category>layui</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+        <tag>layui</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mybatis实现日期范围内查询]]></title>
+    <url>%2F2019%2F11%2F06%2FMybatis%E5%AE%9E%E7%8E%B0%E6%97%A5%E6%9C%9F%E8%8C%83%E5%9B%B4%E5%86%85%E6%9F%A5%E8%AF%A2%2F</url>
+    <content type="text"><![CDATA[Springboot+layui+mybatis实现指定时间范围内数据的查询。 前端通过layui的laydate控件可以获取选取的时间字符串，格式都为2019-11-06这种。 在筛选数据的时候需要获取到指定时间范围内的数据，比如从2019-11-04到2019-11-09内的所有文件，在数据库搜索时后端的xml可以使用以下的mysql语句。 12345678910111213141516171819&lt;select id="search" resultMap="File"&gt; SELECT * FROM file &lt;where&gt; &lt;if test="aid!=null"&gt; and aid=#&#123;aid&#125; &lt;/if&gt; &lt;if test="bid!=null"&gt; and bid=#&#123;bid&#125; &lt;/if&gt; &lt;if test="startDate!=null"&gt; &lt;![CDATA[ and DATE_FORMAT(mytime, '%Y-%m-%d ') &gt;= DATE_FORMAT(#&#123;startDate&#125;, '%Y-%m-%d') ]]&gt; &lt;/if&gt; &lt;if test="endDate!=null"&gt; &lt;![CDATA[ and DATE_FORMAT(mytime, '%Y-%m-%d') &lt;= DATE_FORMAT(#&#123;endDate&#125; , '%Y-%m-%d') ]]&gt; &lt;/if&gt; &lt;/where&gt;&lt;/select&gt; 其中aid和bid是两个查询条件变量。同时时间范围也是条件，起始时间的变量是startDate，截至时间的变量是endDate，mytime是数据库中存储日期的字段列名。 所以对应dao层需要传四个变量：aid，bid，startDate，endDate。语句为 1List&lt;Ffile&gt; search(Integer aid,Integer bid,String startDate,String endDate); 这样就可以查询到满足aid和bid条件并且数据日期在startDate-endDate范围内的全部数据了。]]></content>
+      <categories>
+        <category>Java</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
         <tag>mybatis</tag>
       </tags>
   </entry>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java,mybatis,">
+  <meta name="keywords" content="Java,SpringBoot,mybatis,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="实现一段时间范围内数据的查询">
-<meta name="keywords" content="Java,mybatis">
+<meta name="description" content="Springboot+layui+mybatis实现指定时间范围内数据的查询。">
+<meta name="keywords" content="Java,SpringBoot,mybatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mybatis实现日期范围内查询">
 <meta property="og:url" content="http://yoursite.com/2019/11/06/Mybatis实现日期范围内查询/index.html">
 <meta property="og:site_name" content="Docin&#39;s Notes">
-<meta property="og:description" content="实现一段时间范围内数据的查询">
+<meta property="og:description" content="Springboot+layui+mybatis实现指定时间范围内数据的查询。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-06T14:50:32.157Z">
+<meta property="og:updated_time" content="2019-11-07T02:43:56.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mybatis实现日期范围内查询">
-<meta name="twitter:description" content="实现一段时间范围内数据的查询">
+<meta name="twitter:description" content="Springboot+layui+mybatis实现指定时间范围内数据的查询。">
 
 
 
@@ -357,6 +357,17 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -402,11 +413,11 @@
       
 
       
-        <p>实现一段时间范围内数据的查询</p>
+        <p>Springboot+layui+mybatis实现指定时间范围内数据的查询。</p>
 <a id="more"></a>
 
 <p>前端通过layui的laydate控件可以获取选取的时间字符串，格式都为2019-11-06这种。</p>
-<p>在筛选数据的时候需要获取到指定<strong>时间范围内</strong>的数据，比如从2019-11-04到2019-11-09内的所有文件，在数据库搜索时可以使用以下的mysql语句。</p>
+<p>在筛选数据的时候需要获取到指定<strong>时间范围内</strong>的数据，比如从2019-11-04到2019-11-09内的所有文件，在数据库搜索时后端的xml可以使用以下的mysql语句。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"search"</span>  <span class="attr">resultMap</span>=<span class="string">"File"</span>&gt;</span></span><br><span class="line">    SELECT * FROM file</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"aid!=null"</span>&gt;</span></span><br><span class="line">            and aid=#&#123;aid&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"bid!=null"</span>&gt;</span></span><br><span class="line">            and bid=#&#123;bid&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"startDate!=null"</span>&gt;</span></span><br><span class="line">            &lt;![CDATA[  and DATE_FORMAT(mytime, '%Y-%m-%d ') &gt;=</span><br><span class="line">                    DATE_FORMAT(#&#123;startDate&#125;, '%Y-%m-%d')   ]]&gt;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"endDate!=null"</span>&gt;</span></span><br><span class="line">            &lt;![CDATA[  and DATE_FORMAT(mytime, '%Y-%m-%d') &lt;=</span><br><span class="line">                    DATE_FORMAT(#&#123;endDate&#125; , '%Y-%m-%d')    ]]&gt;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>其中aid和bid是两个查询条件变量。同时时间范围也是条件，起始时间的变量是startDate，截至时间的变量是endDate，<strong>mytime</strong>是数据库中存储日期的字段列名。</p>
@@ -462,6 +473,8 @@
           
             <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
           
+            <a href="/tags/SpringBoot/" rel="tag"><i class="fa fa-tag"></i> SpringBoot</a>
+          
             <a href="/tags/mybatis/" rel="tag"><i class="fa fa-tag"></i> mybatis</a>
           
         </div>
@@ -484,6 +497,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/07/SpringBoot-layui实现文件上传和下载-1/" rel="prev" title="SpringBoot+layui实现文件上传和下载(1)">
+                SpringBoot+layui实现文件上传和下载(1) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -556,7 +573,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -567,7 +584,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -578,7 +595,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
